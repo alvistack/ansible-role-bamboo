@@ -74,14 +74,14 @@ Role Variables
 <tr class="even">
 <td>bamboo_jvm_maximum_memory</td>
 <td>no</td>
-<td><code>768m</code></td>
+<td><code>1024m</code></td>
 <td></td>
 <td>Bamboo JVM maximum memory usage</td>
 </tr>
 <tr class="odd">
 <td>bamboo_jvm_minimum_memory</td>
 <td>no</td>
-<td><code>384m</code></td>
+<td><code>512m</code></td>
 <td></td>
 <td>Bamboo JVM minimum memory usage</td>
 </tr>
