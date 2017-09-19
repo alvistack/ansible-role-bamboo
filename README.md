@@ -1,5 +1,5 @@
 Ansible Role for Bamboo
-=====================
+=======================
 
 [![Build Status](https://travis-ci.org/alvistack/ansible-role-bamboo.svg?branch=master)](https://travis-ci.org/alvistack/ansible-role-bamboo)
 [![GitHub tag](https://img.shields.io/github/tag/alvistack/ansible-role-bamboo.svg)](https://github.com/alvistack/ansible-role-bamboo)
