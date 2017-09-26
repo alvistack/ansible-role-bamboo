@@ -26,6 +26,21 @@
     - role: ansible-role-apt
     - role: ansible-role-yum
     - role: ansible-role-java
+
+- hosts: all
+  remote_user: root
+  roles:
     - role: ansible-role-bamboo
+      # Owner and group for Bamdoo.
+      bamboo_owner: "daemon"
+      bamboo_group: "daemon"
+      # Location for the $BAMBOO_HOME directory.
+      bamboo_home: "/var/atlassian/application-data/bamboo"
+      # Location for the $BAMBOO_CATALINA directory.
+      bamboo_catalina: "/opt/atlassian/bamboo"
+
+- hosts: all
+  remote_user: root
+  roles:
     - role: ansible-role-mariadb-connector-java
       mariadb_connector_java_dest: "/opt/atlassian/bamboo/lib/mariadb-connector-java.jar"
