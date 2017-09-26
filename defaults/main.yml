@@ -14,16 +14,34 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-bamboo_catalina: "/opt/atlassian/bamboo"
-bamboo_connector_port: "8085"
-bamboo_context_path: ~
-bamboo_group: "daemon"
-bamboo_home: "/var/atlassian/application-data/bamboo"
-bamboo_jvm_maximum_memory: "1024m"
-bamboo_jvm_minimum_memory: "512m"
-bamboo_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300"
+# Owner and group for Bamdoo.
 bamboo_owner: "daemon"
+bamboo_group: "daemon"
+
+# Location for the $BAMBOO_HOME directory.
+bamboo_home: "/var/atlassian/application-data/bamboo"
+
+# Location for the $BAMBOO_CATALINA directory.
+bamboo_catalina: "/opt/atlassian/bamboo"
+
+# Bamboo JVM minimal and maximum memory usage.
+bamboo_jvm_minimum_memory: "512m"
+bamboo_jvm_maximum_memory: "1024m"
+
+# Bamboo Apache Tomcat connector and server port.
+bamboo_connector_port: "8085"
+bamboo_server_port: "8007"
+
+# Context path for Bamboo installation.
+bamboo_context_path: ~
+
+# If Bamboo running behide reverse proxy, setup `bamboo_scheme` with whatever
+# `http` or `https`, and supply `bamboo_proxy_name` with its domain name.
 bamboo_proxy_name: ~
 bamboo_scheme: ~
-bamboo_server_port: "8007"
+
+# Atlassian Support recommended JVM arguments.
+bamboo_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300"
+
+# URL for download Bamboo archive.
 bamboo_url: "https://downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-6.1.1.tar.gz"
