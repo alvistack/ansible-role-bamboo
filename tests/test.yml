@@ -38,9 +38,25 @@
       bamboo_home: "/var/atlassian/application-data/bamboo"
       # Location for the $BAMBOO_CATALINA directory.
       bamboo_catalina: "/opt/atlassian/bamboo"
+      # Bamboo Apache Tomcat connector and server port.
+      bamboo_connector_port: "8085"
+      bamboo_server_port: "8007"
 
 - hosts: all
   remote_user: root
   roles:
     - role: ansible-role-mariadb-connector-java
       mariadb_connector_java_dest: "/opt/atlassian/bamboo/lib/mariadb-connector-java.jar"
+
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: service bamboo start
+      service:
+        name: "bamboo"
+        enabled: "yes"
+
+    - name: check port
+      wait_for:
+        port: "8085"
+        timeout: "300"
