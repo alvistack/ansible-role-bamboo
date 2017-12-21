@@ -44,4 +44,4 @@ bamboo_scheme: ~
 bamboo_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300"
 
 # URL for download Bamboo archive.
-bamboo_url: "https://downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-6.2.5.tar.gz"
+bamboo_url: "https://downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-6.3.0.tar.gz"
