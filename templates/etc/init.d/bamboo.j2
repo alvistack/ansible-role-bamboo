@@ -22,12 +22,8 @@ BAMBOO_CATALINA_PID=${BAMBOO_CATALINA}/work/catalina.pid
 start() {
     echo "Starting Bamboo: "
 
-    mkdir -p ${BAMBOO_HOME}
-    chmod -f 755 ${BAMBOO_HOME}
-    chown -Rf ${BAMBOO_OWNER}:${BAMBOO_GROUP} ${BAMBOO_HOME}
-
     if [ "x${USER}" != "x${BAMBOO_OWNER}" ]; then
-        su -s /bin/bash ${BAMBOO_OWNER} -c "${BAMBOO_CATALINA}/bin/start-bamboo.sh $@"
+        su -l -s /bin/bash ${BAMBOO_OWNER} -c "${BAMBOO_CATALINA}/bin/start-bamboo.sh $@"
     else
         ${BAMBOO_CATALINA}/bin/start-bamboo.sh $@
     fi
@@ -39,7 +35,7 @@ stop() {
     echo "Shutting down Bamboo: "
 
     if [ "x${USER}" != "x${BAMBOO_OWNER}" ]; then
-        su -s /bin/bash ${BAMBOO_OWNER} -c "${BAMBOO_CATALINA}/bin/stop-bamboo.sh $@"
+        su -l -s /bin/bash ${BAMBOO_OWNER} -c "${BAMBOO_CATALINA}/bin/stop-bamboo.sh $@"
     else
         ${BAMBOO_CATALINA}/bin/stop-bamboo.sh $@
     fi
