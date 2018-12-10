@@ -14,34 +14,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Owner and group for Bamdoo.
-bamboo_owner: "daemon"
-bamboo_group: "daemon"
-
-# Location for the $BAMBOO_HOME directory.
-bamboo_home: "/var/atlassian/application-data/bamboo"
-
-# Location for the $BAMBOO_CATALINA directory.
-bamboo_catalina: "/opt/atlassian/bamboo"
-
-# Bamboo JVM minimal and maximum memory usage.
+# JVM minimal and maximum memory usage.
 bamboo_jvm_minimum_memory: "512m"
 bamboo_jvm_maximum_memory: "1024m"
 
-# Bamboo Apache Tomcat connector and server port.
-bamboo_connector_port: "8085"
-bamboo_server_port: "8007"
-
-# Context path for Bamboo installation.
-bamboo_context_path: ~
-
-# If Bamboo running behide reverse proxy, setup `bamboo_scheme` with whatever
-# `http` or `https`, and supply `bamboo_proxy_name` with its domain name.
-bamboo_proxy_name: ~
-bamboo_scheme: ~
+# Proxy and context path setup.
+bamboo_catalina_connector_proxyname: ~
+bamboo_catalina_connector_proxyport: ~
+bamboo_catalina_connector_scheme: "http"
+bamboo_catalina_connector_secure: "false"
+bamboo_catalina_context_path: ~
 
 # Atlassian Support recommended JVM arguments.
 bamboo_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300"
 
-# URL for download Bamboo archive.
-bamboo_url: "https://downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-6.3.1.tar.gz"
+# Session timeout.
+bamboo_session_timeout: "300"
+
+# URL for download archives.
+bamboo_download_url: "https://downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-6.7.1.tar.gz"
+mysql_jdbc_download_url: "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.13.tar.gz"
+postgresql_jdbc_download_url: "https://jdbc.postgresql.org/download/postgresql-42.2.5.jar"
