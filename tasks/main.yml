@@ -52,6 +52,8 @@
     mode: "{{ item.mode | default('0755') }}"
     state: "{{ item.state | default('directory') }}"
   with_items:
+    - { dest: "/etc/init.d" }
+    - { dest: "/etc/systemd/system" }
     - { dest: "/opt/atlassian/bamboo", owner: "daemon", group: "daemon" }
     - { dest: "/var/atlassian/application-data/bamboo", owner: "daemon", group: "daemon" }
   tags: bamboo
