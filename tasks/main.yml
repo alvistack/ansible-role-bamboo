@@ -44,44 +44,50 @@
     loop_var: "loop_var"
   tags: bamboo
 
-- name: prepare files
+- name: prepare directories
   file:
     dest: "{{ item.dest }}"
-    owner: "{{ item.owner }}"
-    group: "{{ item.group }}"
-    mode: "{{ item.mode }}"
-    state: "{{ item.state }}"
+    owner: "{{ item.owner | default('root') }}"
+    group: "{{ item.group | default('root') }}"
+    mode: "{{ item.mode | default('0755') }}"
+    state: "{{ item.state | default('directory') }}"
   with_items:
-    - { dest: "{{ bamboo_catalina }}", owner: "{{ bamboo_owner }}", group: "{{ bamboo_group }}", mode: "0755", state: "directory" }
-    - { dest: "{{ bamboo_home }}", owner: "{{ bamboo_owner }}", group: "{{ bamboo_group }}", mode: "0755", state: "directory" }
+    - { dest: "/opt/atlassian/bamboo", owner: "daemon", group: "daemon" }
+    - { dest: "/var/atlassian/application-data/bamboo", owner: "daemon", group: "daemon" }
   tags: bamboo
 
 - name: unarchive package
   shell: |
-    ARCHIVE="`mktemp --suffix=.tar.gz`"
-    curl -sL {{ bamboo_url }} > $ARCHIVE
-    tar zxf $ARCHIVE -C {{ bamboo_catalina }} --strip-components=1
-    chown -Rf {{ bamboo_owner }}:{{ bamboo_group }} {{ bamboo_catalina }}
-    rm -rf $ARCHIVE
+    cd /opt/atlassian/bamboo
+    curl -skL {{ bamboo_download_url }} | tar zxf - --strip-components 1
+    cd /opt/atlassian/bamboo/lib
+    rm -rf *mysql*.jar
+    curl -skL {{ mysql_jdbc_download_url }} | tar zxf - --strip-components 1 --wildcards "mysql*/*mysql*.jar"
+    cd /opt/atlassian/bamboo/lib
+    rm -rf *postgresql*.jar
+    curl -skL {{ postgresql_jdbc_download_url }} -O
+    chown -Rf daemon:daemon /opt/atlassian/bamboo
   args:
-    creates: "{{ bamboo_catalina }}/bin/start-bamboo.sh"
+    creates: "/opt/atlassian/bamboo/bin/start-bamboo.sh"
   tags: bamboo
 
 - name: copy templates
   template:
-    src: "{{ item.src }}"
+    src: "./templates{{ item.dest }}.j2"
     dest: "{{ item.dest }}"
-    owner: "{{ item.owner }}"
-    group: "{{ item.group }}"
-    mode: "{{ item.mode }}"
+    owner: "{{ item.owner | default('root') }}"
+    group: "{{ item.group | default('root') }}"
+    mode: "{{ item.mode | default('0644') }}"
   with_items:
-    - { src: "etc/init.d/bamboo.j2", dest: "/etc/init.d/bamboo", owner: "root", group: "root", mode: "0755" }
-    - { src: "opt/atlassian/bamboo/bin/setenv.sh.j2", dest: "{{ bamboo_catalina }}/bin/setenv.sh", owner: "{{ bamboo_owner }}", group: "{{ bamboo_group }}", mode: "0644" }
-    - { src: "opt/atlassian/bamboo/conf/server.xml.j2", dest: "{{ bamboo_catalina }}/conf/server.xml", owner: "{{ bamboo_owner }}", group: "{{ bamboo_group }}", mode: "0644" }
+    - { dest: "/etc/init.d/bamboo", mode: "0755" }
+    - { dest: "/opt/atlassian/bamboo/bin/setenv.sh", owner: "daemon", group: "daemon", mode: "0755" }
+    - { dest: "/opt/atlassian/bamboo/conf/server.xml", owner: "daemon", group: "daemon" }
   tags: bamboo
 
 - name: enable service
   service:
-    name: "bamboo"
-    enabled: "yes"
+    name: bamboo
+    enabled: yes
+  changed_when: false
+  ignore_errors: yes
   tags: bamboo

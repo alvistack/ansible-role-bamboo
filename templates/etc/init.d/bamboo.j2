@@ -13,11 +13,11 @@
 #               Provide commands for manually starting and stopping Bamboo.
 ### END INIT INFO
 
-BAMBOO_OWNER={{ bamboo_owner }}
-BAMBOO_GROUP={{ bamboo_group }}
-BAMBOO_HOME={{ bamboo_home }}
-BAMBOO_CATALINA={{ bamboo_catalina }}
-BAMBOO_CATALINA_PID={{ bamboo_catalina }}/work/catalina.pid
+BAMBOO_OWNER=${BAMBOO_OWNER:-daemon}
+BAMBOO_GROUP=${BAMBOO_GROUP:-daemon}
+BAMBOO_HOME=${BAMBOO_HOME:-/var/atlassian/application-data/bamboo}
+BAMBOO_CATALINA=${BAMBOO_CATALINA:-/opt/atlassian/bamboo}
+BAMBOO_CATALINA_PID=${BAMBOO_CATALINA}/work/catalina.pid
 
 start() {
     echo "Starting Bamboo: "
@@ -69,14 +69,17 @@ status() {
 
 case "$1" in
     start)
-        start ${@:2}
+        shift
+        start $@
         ;;
     stop)
-        stop ${@:2}
+        shift
+        stop $@
         ;;
     restart)
-        stop ${@:2}
-        start ${@:2}
+        shift
+        stop $@
+        start $@
         ;;
     status)
         status
