@@ -2,14 +2,15 @@
 
 [Unit]
 Description=Atlassian Bamboo
-After=syslog.target
+After=syslog.target network.target
 
 [Service]
+ExecStart=/opt/atlassian/bamboo/bin/start-bamboo.sh
+ExecStop=/opt/atlassian/bamboo/bin/stop-bamboo.sh
+PIDFile=/opt/atlassian/bamboo/work/catalina.pid
+Type=forking
 User=daemon
 Group=daemon
-ExecStart=/etc/init.d/bamboo start
-ExecStop=/etc/init.d/bamboo stop
-PIDFile=/opt/atlassian/bamboo/work/catalina.pid
 
 [Install]
 WantedBy=multi-user.target
