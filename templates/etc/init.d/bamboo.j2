@@ -23,7 +23,7 @@ start() {
     echo "Starting Bamboo: "
 
     if [ "x${USER}" != "x${BAMBOO_OWNER}" ]; then
-        su -l -s /bin/bash ${BAMBOO_OWNER} -c "${BAMBOO_CATALINA}/bin/start-bamboo.sh $@"
+        su -s /bin/bash ${BAMBOO_OWNER} -c "${BAMBOO_CATALINA}/bin/start-bamboo.sh $@"
     else
         ${BAMBOO_CATALINA}/bin/start-bamboo.sh $@
     fi
@@ -35,7 +35,7 @@ stop() {
     echo "Shutting down Bamboo: "
 
     if [ "x${USER}" != "x${BAMBOO_OWNER}" ]; then
-        su -l -s /bin/bash ${BAMBOO_OWNER} -c "${BAMBOO_CATALINA}/bin/stop-bamboo.sh $@"
+        su -s /bin/bash ${BAMBOO_OWNER} -c "${BAMBOO_CATALINA}/bin/stop-bamboo.sh $@"
     else
         ${BAMBOO_CATALINA}/bin/stop-bamboo.sh $@
     fi
