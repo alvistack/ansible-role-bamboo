@@ -55,16 +55,18 @@
     - { dest: "/etc/init.d" }
     - { dest: "/etc/systemd/system" }
     - { dest: "/opt/atlassian/bamboo", owner: "daemon", group: "daemon" }
+    - { dest: "/opt/atlassian/bamboo/bin", owner: "daemon", group: "daemon" }
+    - { dest: "/opt/atlassian/bamboo/conf", owner: "daemon", group: "daemon" }
     - { dest: "/var/atlassian/application-data/bamboo", owner: "daemon", group: "daemon" }
   tags: bamboo
 
 - name: unarchive package
   shell: |
     cd /opt/atlassian/bamboo
-    curl -skL {{ bamboo_download_url }} | tar zxf - --strip-components 1
+    curl -skL {{ bamboo_download_url }} | tar zxf - --strip-components=1
     cd /opt/atlassian/bamboo/lib
     rm -rf *mysql*.jar
-    curl -skL {{ mysql_jdbc_download_url }} | tar zxf - --strip-components 1 --wildcards "mysql*/*mysql*.jar"
+    curl -skL {{ mysql_jdbc_download_url }} | tar zxf - --strip-components=1 --wildcards "mysql*/*mysql*.jar"
     cd /opt/atlassian/bamboo/lib
     rm -rf *postgresql*.jar
     curl -skL {{ postgresql_jdbc_download_url }} -O
@@ -85,18 +87,22 @@
     - { dest: "/etc/systemd/system/bamboo.service" }
     - { dest: "/opt/atlassian/bamboo/bin/setenv.sh", owner: "daemon", group: "daemon", mode: "0755" }
     - { dest: "/opt/atlassian/bamboo/conf/server.xml", owner: "daemon", group: "daemon" }
-  register: template_result
+  notify:
+    - systemctl daemon-reload
   tags: bamboo
 
-- name: systemctl daemon-reload
-  systemd:
-    name: bamboo
-    daemon_reload: yes
-  when:
-    - ansible_service_mgr == 'systemd'
-    - template_result is changed
-  changed_when: false
-  ignore_errors: yes
+- name: prepare files
+  file:
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner | default('root') }}"
+    group: "{{ item.group | default('root') }}"
+    mode: "{{ item.mode | default('0644') }}"
+    state: "{{ item.state | default('file') }}"
+  with_items:
+    - { dest: "/etc/init.d/bamboo", mode: "0755" }
+    - { dest: "/etc/systemd/system/bamboo.service" }
+    - { dest: "/opt/atlassian/bamboo/bin/setenv.sh", owner: "daemon", group: "daemon", mode: "0755" }
+    - { dest: "/opt/atlassian/bamboo/conf/server.xml", owner: "daemon", group: "daemon" }
   tags: bamboo
 
 - name: enable service
