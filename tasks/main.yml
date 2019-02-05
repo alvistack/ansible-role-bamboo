@@ -44,6 +44,26 @@
     loop_var: "loop_var"
   tags: bamboo
 
+- name: groupadd
+  group:
+    name: "bamboo"
+    gid: "68085"
+    system: true
+    state: "present"
+  tags: bamboo
+
+- name: useradd
+  user:
+    name: "bamboo"
+    group: "bamboo"
+    uid: "68085"
+    home: "/var/atlassian/application-data/bamboo"
+    shell: "/usr/sbin/nologin"
+    system: true
+    create_home: false
+    state: "present"
+  tags: bamboo
+
 - name: prepare directories
   file:
     dest: "{{ item.dest }}"
@@ -53,11 +73,11 @@
     state: "{{ item.state | default('directory') }}"
   with_items:
     - { dest: "/etc/init.d" }
-    - { dest: "/etc/systemd/system" }
-    - { dest: "/opt/atlassian/bamboo", owner: "daemon", group: "daemon" }
-    - { dest: "/opt/atlassian/bamboo/bin", owner: "daemon", group: "daemon" }
-    - { dest: "/opt/atlassian/bamboo/conf", owner: "daemon", group: "daemon" }
-    - { dest: "/var/atlassian/application-data/bamboo", owner: "daemon", group: "daemon" }
+    - { dest: "/lib/systemd/system" }
+    - { dest: "/opt/atlassian/bamboo", owner: "bamboo", group: "bamboo" }
+    - { dest: "/opt/atlassian/bamboo/bin", owner: "bamboo", group: "bamboo" }
+    - { dest: "/opt/atlassian/bamboo/conf", owner: "bamboo", group: "bamboo" }
+    - { dest: "/var/atlassian/application-data/bamboo", owner: "bamboo", group: "bamboo" }
   tags: bamboo
 
 - name: unarchive package
@@ -70,7 +90,7 @@
     cd /opt/atlassian/bamboo/lib
     rm -rf *postgresql*.jar
     curl -skL {{ postgresql_jdbc_download_url }} -O
-    chown -Rf daemon:daemon /opt/atlassian/bamboo
+    chown -Rf bamboo:bamboo /opt/atlassian/bamboo
   args:
     creates: "/opt/atlassian/bamboo/bin/start-bamboo.sh"
   tags: bamboo
@@ -84,9 +104,9 @@
     mode: "{{ item.mode | default('0644') }}"
   with_items:
     - { dest: "/etc/init.d/bamboo", mode: "0755" }
-    - { dest: "/etc/systemd/system/bamboo.service" }
-    - { dest: "/opt/atlassian/bamboo/bin/setenv.sh", owner: "daemon", group: "daemon", mode: "0755" }
-    - { dest: "/opt/atlassian/bamboo/conf/server.xml", owner: "daemon", group: "daemon" }
+    - { dest: "/lib/systemd/system/bamboo.service" }
+    - { dest: "/opt/atlassian/bamboo/bin/setenv.sh", owner: "bamboo", group: "bamboo", mode: "0755" }
+    - { dest: "/opt/atlassian/bamboo/conf/server.xml", owner: "bamboo", group: "bamboo" }
   notify:
     - systemctl daemon-reload
   tags: bamboo
@@ -100,9 +120,9 @@
     state: "{{ item.state | default('file') }}"
   with_items:
     - { dest: "/etc/init.d/bamboo", mode: "0755" }
-    - { dest: "/etc/systemd/system/bamboo.service" }
-    - { dest: "/opt/atlassian/bamboo/bin/setenv.sh", owner: "daemon", group: "daemon", mode: "0755" }
-    - { dest: "/opt/atlassian/bamboo/conf/server.xml", owner: "daemon", group: "daemon" }
+    - { dest: "/lib/systemd/system/bamboo.service" }
+    - { dest: "/opt/atlassian/bamboo/bin/setenv.sh", owner: "bamboo", group: "bamboo", mode: "0755" }
+    - { dest: "/opt/atlassian/bamboo/conf/server.xml", owner: "bamboo", group: "bamboo" }
   tags: bamboo
 
 - name: enable service
