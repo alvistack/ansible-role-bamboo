@@ -47,7 +47,6 @@
 - name: groupadd
   group:
     name: "bamboo"
-    gid: "68085"
     system: true
     state: "present"
   tags: bamboo
@@ -56,7 +55,6 @@
   user:
     name: "bamboo"
     group: "bamboo"
-    uid: "68085"
     home: "/var/atlassian/application-data/bamboo"
     shell: "/usr/sbin/nologin"
     system: true
