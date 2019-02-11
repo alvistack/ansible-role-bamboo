@@ -91,6 +91,7 @@
     curl -skL {{ postgresql_jdbc_download_url }} -O
     chown -Rf bamboo:bamboo /opt/atlassian/bamboo
   args:
+    executable: /bin/bash
     creates: "/opt/atlassian/bamboo/bin/start-bamboo.sh"
   tags: bamboo
 
