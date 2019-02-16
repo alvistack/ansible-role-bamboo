@@ -80,6 +80,7 @@
 
 - name: unarchive package
   shell: |
+    set -o pipefail
     cd /opt/atlassian/bamboo
     curl -skL {{ bamboo_download_url }} | tar zxf - --strip-components=1
     cd /opt/atlassian/bamboo/lib
@@ -90,6 +91,7 @@
     curl -skL {{ postgresql_jdbc_download_url }} -O
     chown -Rf bamboo:bamboo /opt/atlassian/bamboo
   args:
+    executable: "/bin/bash"
     creates: "/opt/atlassian/bamboo/bin/start-bamboo.sh"
   tags: bamboo
 
