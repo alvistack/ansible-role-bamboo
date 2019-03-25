@@ -78,17 +78,30 @@
     - { dest: "/var/atlassian/application-data/bamboo", owner: "bamboo", group: "bamboo" }
   tags: bamboo
 
+- name: download archive
+  get_url:
+    url: "{{ item.url }}"
+    dest: "{{ item.dest }}"
+    checksum: "{{ item.checksum }}"
+  with_items:
+    - "{{ bamboo_download }}"
+    - "{{ mysql_jdbc_download }}"
+    - "{{ postgresql_jdbc_download }}"
+  register: result
+  until: result is succeeded
+  tags: bamboo
+
 - name: unarchive package
   shell: |
     set -o pipefail
     cd /opt/atlassian/bamboo
-    curl -skL {{ bamboo_download_url }} | tar zxf - --strip-components=1
+    tar zxf {{ bamboo_download.dest }} --strip-components=1
     cd /opt/atlassian/bamboo/lib
     rm -rf *mysql*.jar
-    curl -skL {{ mysql_jdbc_download_url }} | tar zxf - --strip-components=1 --wildcards "mysql*/*mysql*.jar"
+    tar zxf {{ mysql_jdbc_download.dest }} --strip-components=1 --wildcards "mysql*/*mysql*.jar"
     cd /opt/atlassian/bamboo/lib
     rm -rf *postgresql*.jar
-    curl -skL {{ postgresql_jdbc_download_url }} -O
+    cp {{ postgresql_jdbc_download.dest }} .
     chown -Rf bamboo:bamboo /opt/atlassian/bamboo
   args:
     executable: "/bin/bash"
