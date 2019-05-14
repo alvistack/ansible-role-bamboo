@@ -138,6 +138,10 @@
     - { dest: "/opt/atlassian/bamboo/conf/server.xml", owner: "bamboo", group: "bamboo" }
   tags: bamboo
 
+- name: flush handlers
+  meta: flush_handlers
+  tags: bamboo
+
 - name: enable service
   service:
     name: bamboo
