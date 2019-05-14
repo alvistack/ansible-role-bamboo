@@ -121,7 +121,7 @@
     - { dest: "/opt/atlassian/bamboo/bin/setenv.sh", owner: "bamboo", group: "bamboo", mode: "0755" }
     - { dest: "/opt/atlassian/bamboo/conf/server.xml", owner: "bamboo", group: "bamboo" }
   notify:
-    - systemctl daemon-reload
+    - bamboo | systemctl daemon-reload
   tags: bamboo
 
 - name: prepare files
