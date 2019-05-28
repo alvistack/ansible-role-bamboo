@@ -21,3 +21,12 @@
     - ansible_service_mgr == 'systemd'
   changed_when: false
   ignore_errors: true
+
+- name: bamboo | systemctl restart
+  service:
+    name: "{{ item.name }}"
+    state: restarted
+  with_items:
+    - { name: "bamboo" }
+  changed_when: false
+  ignore_errors: true

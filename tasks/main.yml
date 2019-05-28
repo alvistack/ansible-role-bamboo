@@ -107,6 +107,9 @@
   args:
     executable: "/bin/bash"
     creates: "/opt/atlassian/bamboo/bin/start-bamboo.sh"
+  notify:
+    - bamboo | systemctl daemon-reload
+    - bamboo | systemctl restart
   tags: bamboo
 
 - name: copy templates
@@ -123,6 +126,7 @@
     - { dest: "/opt/atlassian/bamboo/conf/server.xml", owner: "bamboo", group: "bamboo" }
   notify:
     - bamboo | systemctl daemon-reload
+    - bamboo | systemctl restart
   tags: bamboo
 
 - name: prepare files
