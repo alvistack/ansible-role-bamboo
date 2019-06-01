@@ -152,8 +152,10 @@
 
 - name: enable service
   service:
-    name: bamboo
+    name: "{{ item.name }}"
     enabled: true
+  with_items:
+    - { name: "bamboo" }
   changed_when: false
   ignore_errors: true
   tags: bamboo
