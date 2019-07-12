@@ -80,6 +80,9 @@
     - { dest: "/opt/atlassian/bamboo/bin", owner: "bamboo", group: "bamboo" }
     - { dest: "/opt/atlassian/bamboo/conf", owner: "bamboo", group: "bamboo" }
     - { dest: "/var/atlassian/application-data/bamboo", owner: "bamboo", group: "bamboo" }
+    - { dest: "{{ bamboo_download.dest | dirname }}" }
+    - { dest: "{{ mysql_jdbc_download.dest | dirname }}" }
+    - { dest: "{{ postgresql_jdbc_download.dest | dirname }}" }
   tags: bamboo
 
 - name: download archive

@@ -17,41 +17,41 @@
 _bamboo_download:
   6.9.2:
     url: "https://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-6.9.2.tar.gz"
-    dest: "/tmp/atlassian-bamboo-6.9.2.tar.gz"
+    dest: "/var/cache/ansible/atlassian-bamboo-6.9.2.tar.gz"
     checksum: "sha1:8b34fad97e128f48650ee41d8171d91ccfd61f81"
   6.9.1:
     url: "https://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-6.9.1.tar.gz"
-    dest: "/tmp/atlassian-bamboo-6.9.1.tar.gz"
+    dest: "/var/cache/ansible/atlassian-bamboo-6.9.1.tar.gz"
     checksum: "sha1:2fa8de0258590ec75df4fe824dfa9d72f63fcc93"
   6.9.0:
     url: "https://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-6.9.0.tar.gz"
-    dest: "/tmp/atlassian-bamboo-6.9.0.tar.gz"
+    dest: "/var/cache/ansible/atlassian-bamboo-6.9.0.tar.gz"
     checksum: "sha1:df4e9a090903d8dbdb3188f8ce0d58d3c6502bc7"
   6.8.2:
     url: "https://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-6.8.2.tar.gz"
-    dest: "/tmp/atlassian-bamboo-6.8.2.tar.gz"
+    dest: "/var/cache/ansible/atlassian-bamboo-6.8.2.tar.gz"
     checksum: "sha1:4af550ce808d2be35adeae2301cc46aec883a418"
   6.8.1:
     url: "https://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-6.8.1.tar.gz"
-    dest: "/tmp/atlassian-bamboo-6.8.1.tar.gz"
+    dest: "/var/cache/ansible/atlassian-bamboo-6.8.1.tar.gz"
     checksum: "sha1:aa261dc89cf881d5d62fdc34b3907bb38ef981c5"
 
 _mysql_jdbc_download:
   8.0.16:
     url: "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.16.tar.gz"
-    dest: "/tmp/mysql-connector-java-8.0.16.tar.gz"
+    dest: "/var/cache/ansible/mysql-connector-java-8.0.16.tar.gz"
     checksum: "sha1:12a12227640d00c8e249b81c7818c12e4ad943ba"
   5.1.47:
     url: "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.47.tar.gz"
-    dest: "/tmp/mysql-connector-java-5.1.47.tar.gz"
+    dest: "/var/cache/ansible/mysql-connector-java-5.1.47.tar.gz"
     checksum: "sha1:abf720d4e48fabcf677653a9f61993e093526616"
 
 _postgresql_jdbc_download:
   42.2.6:
     url: "https://jdbc.postgresql.org/download/postgresql-42.2.6.jar"
-    dest: "/tmp/postgresql-42.2.6.jar"
+    dest: "/var/cache/ansible/postgresql-42.2.6.jar"
     checksum: "sha1:58586d617d57746853fc0b8f37c83a8384fcd0ca"
   42.2.5:
     url: "https://jdbc.postgresql.org/download/postgresql-42.2.5.jar"
-    dest: "/tmp/postgresql-42.2.5.jar"
+    dest: "/var/cache/ansible/postgresql-42.2.5.jar"
     checksum: "sha1:951b7eda125f3137538a94e2cbdcf744088ad4c2"
