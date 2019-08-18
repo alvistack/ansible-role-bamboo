@@ -47,26 +47,28 @@
     <Service name="Catalina">
 
         <Connector
-            protocol="HTTP/1.1"
-            port="8085"
+                port="8085"
+                protocol="HTTP/1.1"
 
-            maxThreads="150" minSpareThreads="25"
-            connectionTimeout="20000"
-            disableUploadTimeout="true"
-            acceptCount="100"
+                maxThreads="150" minSpareThreads="25"
+                connectionTimeout="20000"
+                disableUploadTimeout="true"
+                acceptCount="100"
 
-            enableLookups="false"
-            maxHttpHeaderSize="8192"
+                enableLookups="false"
+                maxHttpHeaderSize="8192"
 
-            useBodyEncodingForURI="true"
-            URIEncoding="UTF-8"
+                useBodyEncodingForURI="true"
+                URIEncoding="UTF-8"
 
-            redirectPort="8443"
-            proxyHost="${catalina.connector.proxyHost}"
-            proxyPort="${catalina.connector.proxyPort}"
-            scheme="${catalina.connector.scheme}"
-            secure="${catalina.connector.secure}"
-            />
+                proxyHost="${catalina.connector.proxyHost}"
+                proxyPort="${catalina.connector.proxyPort}"
+                scheme="${catalina.connector.scheme}"
+                secure="${catalina.connector.secure}"
+
+                redirectPort="8443">
+            <UpgradeProtocol className="org.apache.coyote.http2.Http2Protocol" />
+        </Connector>
 
         <!--
         ====================================================================================
@@ -81,10 +83,9 @@
              For more info, see :
               https://confluence.atlassian.com/display/BAMBOO/Securing+Bamboo+with+Tomcat+using+SSL
               and
-              http://tomcat.apache.org/tomcat-8.0-doc/ssl-howto.html
+              http://tomcat.apache.org/tomcat-8.5-doc/ssl-howto.html
         ====================================================================================
         -->
-
         <!--
         <Connector
             port="8443"
@@ -101,9 +102,9 @@
             URIEncoding="UTF-8"
 
             scheme="https" secure="true" SSLEnabled="true" sslProtocol="TLS"
-            clientAuth="false"
-        />
-        -->
+            clientAuth="false">
+            <UpgradeProtocol className="org.apache.coyote.http2.Http2Protocol" />
+        </Connector> -->
         <!--
          ====================================================================================
          
