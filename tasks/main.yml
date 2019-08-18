@@ -94,25 +94,25 @@
     - "{{ bamboo_download }}"
     - "{{ mysql_jdbc_download }}"
     - "{{ postgresql_jdbc_download }}"
-  register: result
-  until: result is succeeded
+  register: get_url_result
+  until: get_url_result is succeeded
   tags: bamboo
 
 - name: unarchive package
   shell: |
     set -o pipefail
     cd /opt/atlassian/bamboo
-    tar zxf {{ bamboo_download.dest }} --strip-components=1
+    TMP_DIR="`mktemp -d`" && tar -zx -C $TMP_DIR -f {{ bamboo_download.dest }} && rsync -aq --delete $TMP_DIR/*/ . && rm -rf $TMP_DIR
     cd /opt/atlassian/bamboo/lib
     rm -rf *mysql*.jar
-    tar zxf {{ mysql_jdbc_download.dest }} --strip-components=1 --wildcards "mysql*/*mysql*.jar"
+    TMP_DIR="`mktemp -d`" && tar -zx -C $TMP_DIR -f {{ mysql_jdbc_download.dest }} && mv $TMP_DIR/*/*mysql*-bin.jar . && rm -rf $TMP_DIR
     cd /opt/atlassian/bamboo/lib
     rm -rf *postgresql*.jar
     cp {{ postgresql_jdbc_download.dest }} .
     chown -Rf bamboo:bamboo /opt/atlassian/bamboo
   args:
     executable: "/bin/bash"
-    creates: "/opt/atlassian/bamboo/bin/start-bamboo.sh"
+  when: get_url_result is changed
   notify:
     - bamboo | systemctl daemon-reload
     - bamboo | systemctl restart
