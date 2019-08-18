@@ -32,8 +32,8 @@
   tasks:
     - name: start service
       service:
-        name: bamboo
-        state: started
+        name: "bamboo"
+        state: "started"
       changed_when: false
       ignore_errors: true
 

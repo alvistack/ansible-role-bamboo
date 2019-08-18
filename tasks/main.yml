@@ -155,10 +155,8 @@
 
 - name: enable service
   service:
-    name: "{{ item.name }}"
+    name: "bamboo"
     enabled: true
-  loop:
-    - { name: "bamboo" }
   changed_when: false
   ignore_errors: true
   tags: bamboo
