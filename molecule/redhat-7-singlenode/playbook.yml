@@ -22,8 +22,8 @@
     - role: python
     - role: java
       package:
-        - { state: "latest", name: "openjdk-8-jdk" }
-      java_home: "/usr/lib/jvm/java-8-openjdk-amd64"
+        - { state: "latest", name: "java-1.8.0-openjdk" }
+      java_home: "/usr/lib/jvm/jre-openjdk"
     - role: bamboo
 
 - hosts: all
