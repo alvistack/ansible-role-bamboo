@@ -110,6 +110,7 @@
     rm -rf *postgresql*.jar
     cp {{ postgresql_jdbc_download.dest }} .
     chown -Rf bamboo:bamboo /opt/atlassian/bamboo
+    chmod 0755 /opt/atlassian/bamboo /opt/atlassian/bamboo/bin /opt/atlassian/bamboo/conf
   args:
     executable: "/bin/bash"
   when: get_url_result is changed
