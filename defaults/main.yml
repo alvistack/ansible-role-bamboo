@@ -32,6 +32,10 @@ postgresql_jdbc_version: "42.2.8"
 # PostgreSQL JDBC download details.
 postgresql_jdbc_download: "{{ _postgresql_jdbc_download[postgresql_jdbc_version] }}"
 
+# Owner and group for Bamboo.
+bamboo_owner: "bamboo"
+bamboo_group: "bamboo"
+
 # JVM minimal and maximum memory usage.
 bamboo_jvm_minimum_memory: "512m"
 bamboo_jvm_maximum_memory: "1024m"

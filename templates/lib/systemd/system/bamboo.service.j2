@@ -9,8 +9,8 @@ ExecStart=/opt/atlassian/bamboo/bin/start-bamboo.sh
 ExecStop=/opt/atlassian/bamboo/bin/stop-bamboo.sh
 PIDFile=/opt/atlassian/bamboo/work/catalina.pid
 Type=forking
-User=bamboo
-Group=bamboo
+User={{ bamboo_owner }}
+Group={{ bamboo_group }}
 
 [Install]
 WantedBy=multi-user.target
