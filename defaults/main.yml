@@ -43,7 +43,7 @@ bamboo_home: "/var/atlassian/application-data/bamboo"
 bamboo_catalina: "/opt/atlassian/bamboo"
 
 # JVM minimal and maximum memory usage.
-bamboo_jvm_minimum_memory: "512m"
+bamboo_jvm_minimum_memory: "1024m"
 bamboo_jvm_maximum_memory: "1024m"
 
 # Proxy and context path setup.
@@ -54,7 +54,11 @@ bamboo_catalina_connector_secure: "false"
 bamboo_catalina_context_path: "/"
 
 # Atlassian Support recommended JVM arguments.
-bamboo_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300 -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1"
+bamboo_jvm_support_recommended_args: >-
+  -Datlassian.plugins.enable.wait=300
+  -XX:+UnlockExperimentalVMOptions
+  -XX:+UseCGroupMemoryLimitForHeap
+  -XX:MaxRAMFraction=1
 
 # Session timeout.
 bamboo_session_timeout: "300"
