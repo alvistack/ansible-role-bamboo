@@ -36,6 +36,12 @@ postgresql_jdbc_download: "{{ _postgresql_jdbc_download[postgresql_jdbc_version]
 bamboo_owner: "bamboo"
 bamboo_group: "bamboo"
 
+# Bamboo home directory.
+bamboo_home: "/var/atlassian/application-data/bamboo"
+
+# Bamboo installation directory.
+bamboo_catalina: "/opt/atlassian/bamboo"
+
 # JVM minimal and maximum memory usage.
 bamboo_jvm_minimum_memory: "512m"
 bamboo_jvm_maximum_memory: "1024m"

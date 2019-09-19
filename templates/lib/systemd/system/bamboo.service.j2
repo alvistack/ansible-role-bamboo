@@ -5,9 +5,9 @@ Description=Atlassian Bamboo
 After=syslog.target network.target
 
 [Service]
-ExecStart=/opt/atlassian/bamboo/bin/start-bamboo.sh
-ExecStop=/opt/atlassian/bamboo/bin/stop-bamboo.sh
-PIDFile=/opt/atlassian/bamboo/work/catalina.pid
+ExecStart={{ bamboo_catalina }}/bin/start-bamboo.sh
+ExecStop={{ bamboo_catalina }}/bin/stop-bamboo.sh
+PIDFile={{ bamboo_catalina }}/work/catalina.pid
 Type=forking
 User={{ bamboo_owner }}
 Group={{ bamboo_group }}

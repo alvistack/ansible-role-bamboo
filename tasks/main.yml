@@ -59,7 +59,7 @@
   user:
     name: "{{ bamboo_owner }}"
     group: "{{ bamboo_group }}"
-    home: "/var/atlassian/application-data/bamboo"
+    home: "{{ bamboo_home }}"
     shell: "/usr/sbin/nologin"
     system: true
     create_home: false
@@ -76,10 +76,10 @@
   loop:
     - { dest: "/etc/init.d" }
     - { dest: "/lib/systemd/system" }
-    - { dest: "/opt/atlassian/bamboo", owner: "{{ bamboo_owner }}", group: "{{ bamboo_group }}" }
-    - { dest: "/opt/atlassian/bamboo/bin", owner: "{{ bamboo_owner }}", group: "{{ bamboo_group }}" }
-    - { dest: "/opt/atlassian/bamboo/conf", owner: "{{ bamboo_owner }}", group: "{{ bamboo_group }}" }
-    - { dest: "/var/atlassian/application-data/bamboo", owner: "{{ bamboo_owner }}", group: "{{ bamboo_group }}" }
+    - { dest: "{{ bamboo_catalina }}", owner: "{{ bamboo_owner }}", group: "{{ bamboo_group }}" }
+    - { dest: "{{ bamboo_catalina }}/bin", owner: "{{ bamboo_owner }}", group: "{{ bamboo_group }}" }
+    - { dest: "{{ bamboo_catalina }}/conf", owner: "{{ bamboo_owner }}", group: "{{ bamboo_group }}" }
+    - { dest: "{{ bamboo_home }}", owner: "{{ bamboo_owner }}", group: "{{ bamboo_group }}" }
     - { dest: "{{ bamboo_download.dest | dirname }}" }
     - { dest: "{{ mysql_jdbc_download.dest | dirname }}" }
     - { dest: "{{ postgresql_jdbc_download.dest | dirname }}" }
@@ -101,16 +101,22 @@
 - name: unarchive package
   shell: |
     set -o pipefail
-    cd /opt/atlassian/bamboo
-    TMP_DIR="`mktemp -d`" && tar -zx -C $TMP_DIR -f {{ bamboo_download.dest }} && rsync -aq --delete $TMP_DIR/*/ . && rm -rf $TMP_DIR
-    cd /opt/atlassian/bamboo/lib
+    cd {{ bamboo_catalina }}
+    TMP_DIR="`mktemp -d`" \
+      && tar -zx -C $TMP_DIR -f {{ bamboo_download.dest }} \
+      && rsync -aq --delete $TMP_DIR/*/ . \
+      && rm -rf $TMP_DIR
+    cd {{ bamboo_catalina }}/lib
     rm -rf *mysql*.jar
-    TMP_DIR="`mktemp -d`" && tar -zx -C $TMP_DIR -f {{ mysql_jdbc_download.dest }} && mv $TMP_DIR/*/*mysql*-bin.jar . && rm -rf $TMP_DIR
-    cd /opt/atlassian/bamboo/lib
+    TMP_DIR="`mktemp -d`" \
+      && tar -zx -C $TMP_DIR -f {{ mysql_jdbc_download.dest }} \
+      && mv $TMP_DIR/*/*mysql*-bin.jar . \
+      && rm -rf $TMP_DIR
+    cd {{ bamboo_catalina }}/lib
     rm -rf *postgresql*.jar
     cp {{ postgresql_jdbc_download.dest }} .
-    chown -Rf bamboo:bamboo /opt/atlassian/bamboo
-    chmod 0755 /opt/atlassian/bamboo /opt/atlassian/bamboo/bin /opt/atlassian/bamboo/conf
+    chown -Rf bamboo:bamboo {{ bamboo_catalina }}
+    chmod 0755 {{ bamboo_catalina }} {{ bamboo_catalina }}/bin {{ bamboo_catalina }}/conf
   args:
     executable: "/bin/bash"
   when: get_url_result is changed
@@ -129,8 +135,15 @@
   loop:
     - { dest: "/etc/init.d/bamboo", mode: "0755" }
     - { dest: "/lib/systemd/system/bamboo.service" }
-    - { dest: "/opt/atlassian/bamboo/bin/setenv.sh", owner: "{{ bamboo_owner }}", group: "{{ bamboo_group }}", mode: "0755" }
-    - { dest: "/opt/atlassian/bamboo/conf/server.xml", owner: "{{ bamboo_owner }}", group: "{{ bamboo_group }}" }
+    - dest: "{{ bamboo_catalina }}/bin/setenv.sh"
+      src: "./templates/opt/atlassian/bamboo/bin/setenv.sh.j2"
+      owner: "{{ bamboo_owner }}"
+      group: "{{ bamboo_group }}"
+      mode: "0755"
+    - dest: "{{ bamboo_catalina }}/conf/server.xml"
+      src: "./templates/opt/atlassian/bamboo/conf/server.xml.j2"
+      owner: "{{ bamboo_owner }}"
+      group: "{{ bamboo_group }}"
   notify:
     - bamboo | systemctl daemon-reload
     - bamboo | systemctl restart
@@ -146,8 +159,13 @@
   loop:
     - { dest: "/etc/init.d/bamboo", mode: "0755" }
     - { dest: "/lib/systemd/system/bamboo.service" }
-    - { dest: "/opt/atlassian/bamboo/bin/setenv.sh", owner: "{{ bamboo_owner }}", group: "{{ bamboo_group }}", mode: "0755" }
-    - { dest: "/opt/atlassian/bamboo/conf/server.xml", owner: "{{ bamboo_owner }}", group: "{{ bamboo_group }}" }
+    - dest: "{{ bamboo_catalina }}/bin/setenv.sh"
+      owner: "{{ bamboo_owner }}"
+      group: "{{ bamboo_group }}"
+      mode: "0755"
+    - dest: "{{ bamboo_catalina }}/conf/server.xml"
+      owner: "{{ bamboo_owner }}"
+      group: "{{ bamboo_group }}"
   tags: bamboo
 
 - name: flush handlers
