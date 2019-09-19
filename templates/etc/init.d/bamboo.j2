@@ -13,10 +13,10 @@
 #               Provide commands for manually starting and stopping Bamboo.
 ### END INIT INFO
 
-BAMBOO_OWNER=${BAMBOO_OWNER:-bamboo}
-BAMBOO_GROUP=${BAMBOO_GROUP:-bamboo}
-BAMBOO_HOME=${BAMBOO_HOME:-/var/atlassian/application-data/bamboo}
-BAMBOO_CATALINA=${BAMBOO_CATALINA:-/opt/atlassian/bamboo}
+BAMBOO_OWNER=${BAMBOO_OWNER:-{{ bamboo_owner }}}
+BAMBOO_GROUP=${BAMBOO_GROUP:-{{ bamboo_group }}}
+BAMBOO_HOME=${BAMBOO_HOME:-{{ bamboo_home }}}
+BAMBOO_CATALINA=${BAMBOO_CATALINA:-{{ bamboo_catalina }}}
 BAMBOO_CATALINA_PID=${BAMBOO_CATALINA}/work/catalina.pid
 
 start() {

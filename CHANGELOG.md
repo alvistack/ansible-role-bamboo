@@ -4,6 +4,9 @@
 
 ### Major Changes
 
+  - Abstract `bamboo_owner` and `bamboo_group` as variable
+  - Abstract `bamboo_home` and `bamboo_catalina` as variable
+
 ## 3.4.0 - 2019-09-18
 
 ### Major Changes
