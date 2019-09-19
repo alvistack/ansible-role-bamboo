@@ -76,13 +76,21 @@
   loop:
     - { dest: "/etc/init.d" }
     - { dest: "/lib/systemd/system" }
-    - { dest: "{{ bamboo_catalina }}", owner: "{{ bamboo_owner }}", group: "{{ bamboo_group }}" }
-    - { dest: "{{ bamboo_catalina }}/bin", owner: "{{ bamboo_owner }}", group: "{{ bamboo_group }}" }
-    - { dest: "{{ bamboo_catalina }}/conf", owner: "{{ bamboo_owner }}", group: "{{ bamboo_group }}" }
-    - { dest: "{{ bamboo_home }}", owner: "{{ bamboo_owner }}", group: "{{ bamboo_group }}" }
     - { dest: "{{ bamboo_download.dest | dirname }}" }
     - { dest: "{{ mysql_jdbc_download.dest | dirname }}" }
     - { dest: "{{ postgresql_jdbc_download.dest | dirname }}" }
+    - dest: "{{ bamboo_catalina }}"
+      owner: "{{ bamboo_owner }}"
+      group: "{{ bamboo_group }}"
+    - dest: "{{ bamboo_catalina }}/bin"
+      owner: "{{ bamboo_owner }}"
+      group: "{{ bamboo_group }}"
+    - dest: "{{ bamboo_catalina }}/conf"
+      owner: "{{ bamboo_owner }}"
+      group: "{{ bamboo_group }}"
+    - dest: "{{ bamboo_home }}"
+      owner: "{{ bamboo_owner }}"
+      group: "{{ bamboo_group }}"
   tags: bamboo
 
 - name: download archive
