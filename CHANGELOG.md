@@ -4,6 +4,8 @@
 
 ### Major Changes
 
+  - Default with Python 3
+  - Revamp molecule test with vagrant
   - Abstract `bamboo_owner` and `bamboo_group` as variable
   - Abstract `bamboo_home` and `bamboo_catalina` as variable
 
