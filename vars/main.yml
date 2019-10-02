@@ -15,6 +15,10 @@
 # limitations under the License.
 
 _bamboo_download:
+  6.10.3:
+    url: "https://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-6.10.3.tar.gz"
+    dest: "/var/cache/ansible/atlassian-bamboo-6.10.3.tar.gz"
+    checksum: "sha1:cc950115eb35d026aefd715447adb1e4beca16ce"
   6.10.2:
     url: "https://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-6.10.2.tar.gz"
     dest: "/var/cache/ansible/atlassian-bamboo-6.10.2.tar.gz"
