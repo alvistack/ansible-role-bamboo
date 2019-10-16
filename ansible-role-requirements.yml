@@ -19,10 +19,12 @@
   version: develop
 
 - name: locales
-  src: https://github.com/alvistack/ansible-role-locales/archive/master.tar.gz
+  src: https://github.com/alvistack/ansible-role-locales
+  version: develop
 
 - name: timezone
-  src: https://github.com/alvistack/ansible-role-timezone/archive/master.tar.gz
+  src: https://github.com/alvistack/ansible-role-timezone
+  version: develop
 
 - name: python
   src: https://github.com/alvistack/ansible-role-python
