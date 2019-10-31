@@ -124,7 +124,7 @@
     cd {{ bamboo_catalina }}/lib
     rm -rf *postgresql*.jar
     cp {{ postgresql_jdbc_download.dest }} .
-    chown -Rf bamboo:bamboo {{ bamboo_catalina }}
+    chown -Rf {{ bamboo_owner }}:{{ bamboo_group }} {{ bamboo_catalina }}
     chmod 0755 \
       {{ bamboo_catalina }} \
       {{ bamboo_catalina }}/bin \
