@@ -110,10 +110,11 @@
 - name: unarchive package
   shell: |
     set -o pipefail
+    rm -rf {{ bamboo_catalina }} && mkdir -p {{ bamboo_catalina }}
     cd {{ bamboo_catalina }}
     TMP_DIR="`mktemp -d`" \
       && tar -zx -C $TMP_DIR -f {{ bamboo_download.dest }} \
-      && rsync -aq --delete $TMP_DIR/*/ . \
+      && cp -rfT $TMP_DIR/* . \
       && rm -rf $TMP_DIR
     cd {{ bamboo_catalina }}/lib
     rm -rf *mysql*.jar
