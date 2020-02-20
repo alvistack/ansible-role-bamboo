@@ -184,15 +184,22 @@
       group: "{{ bamboo_group }}"
   tags: bamboo
 
+- name: enable service
+  service:
+    name: "bamboo"
+    enabled: true
+  changed_when: false
+  ignore_errors: true
+  tags: bamboo
+
 - name: flush handlers
   meta: flush_handlers
   tags: bamboo
 
-- name: enable service
+- name: start service
   service:
     name: "bamboo"
     state: "started"
-    enabled: true
   changed_when: false
   ignore_errors: true
   tags: bamboo
