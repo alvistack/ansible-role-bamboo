@@ -1,6 +1,6 @@
 # Ansible Role for Bamboo
 
-[![Travis](https://img.shields.io/travis/alvistack/ansible-role-bamboo.svg)](https://travis-ci.org/alvistack/ansible-role-bamboo)
+[![Travis](https://img.shields.io/travis/com/alvistack/ansible-role-bamboo.svg)](https://travis-ci.com/alvistack/ansible-role-bamboo)
 [![GitHub release](https://img.shields.io/github/release/alvistack/ansible-role-bamboo.svg)](https://github.com/alvistack/ansible-role-bamboo)
 [![GitHub license](https://img.shields.io/github/license/alvistack/ansible-role-bamboo.svg)](https://github.com/alvistack/ansible-role-bamboo/blob/master/LICENSE)
 [![Ansible Role](https://img.shields.io/badge/galaxy-alvistack.bamboo-blue.svg)](https://galaxy.ansible.com/alvistack/bamboo)
