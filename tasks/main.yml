@@ -137,7 +137,7 @@
   when: get_url_result is changed
   notify:
     - bamboo | systemctl daemon-reload
-    - bamboo | systemctl restart
+    - bamboo | systemctl restart bamboo
   tags: bamboo
 
 - name: copy templates
@@ -160,7 +160,7 @@
       group: "{{ bamboo_group }}"
   notify:
     - bamboo | systemctl daemon-reload
-    - bamboo | systemctl restart
+    - bamboo | systemctl restart bamboo
   tags: bamboo
 
 - name: prepare files
