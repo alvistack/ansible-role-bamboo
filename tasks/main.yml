@@ -185,7 +185,7 @@
   meta: flush_handlers
   tags: bamboo
 
-- name: start service
+- name: systemctl start bamboo
   service:
     name: "bamboo"
     state: "started"
