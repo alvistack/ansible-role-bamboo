@@ -181,10 +181,6 @@
       group: "{{ bamboo_group }}"
   tags: bamboo
 
-- name: flush handlers
-  meta: flush_handlers
-  tags: bamboo
-
 - name: systemctl start bamboo
   service:
     name: "bamboo"
@@ -192,4 +188,8 @@
     enabled: true
   changed_when: false
   ignore_errors: true
+  tags: bamboo
+
+- name: flush handlers
+  meta: flush_handlers
   tags: bamboo
