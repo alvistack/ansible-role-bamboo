@@ -20,7 +20,7 @@
   changed_when: false
   ignore_errors: true
 
-- name: bamboo | systemctl restart
+- name: bamboo | systemctl restart bamboo
   service:
     name: "bamboo"
     state: "restarted"
