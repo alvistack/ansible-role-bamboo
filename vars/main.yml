@@ -15,6 +15,10 @@
 # limitations under the License.
 
 _bamboo_download:
+  7.1.1:
+    url: "https://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-7.1.1.tar.gz"
+    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-bamboo-7.1.1.tar.gz"
+    checksum: "sha1:317572024a475cac3f26b93627f9ac0f93d5c46a"
   7.0.4:
     url: "https://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-7.0.4.tar.gz"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-bamboo-7.0.4.tar.gz"
@@ -27,22 +31,6 @@ _bamboo_download:
     url: "https://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-7.0.2.tar.gz"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-bamboo-7.0.2.tar.gz"
     checksum: "sha1:7cc70b0a0300b3fb379d6f76ed4f7e08727c74bc"
-  7.0.1:
-    url: "https://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-7.0.1.tar.gz"
-    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-bamboo-7.0.1.tar.gz"
-    checksum: "sha1:284b50e4cc05a60f3fbbdcfb4102fbb0ff8e8a61"
-  6.10.4:
-    url: "https://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-6.10.4.tar.gz"
-    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-bamboo-6.10.4.tar.gz"
-    checksum: "sha1:bd75258cc3782879fec49fb83ad2861155bc3ece"
-  6.10.3:
-    url: "https://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-6.10.3.tar.gz"
-    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-bamboo-6.10.3.tar.gz"
-    checksum: "sha1:cc950115eb35d026aefd715447adb1e4beca16ce"
-  6.10.2:
-    url: "https://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-6.10.2.tar.gz"
-    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-bamboo-6.10.2.tar.gz"
-    checksum: "sha1:da26d65254767654ea3ba072b6b395ed06473017"
 
 _mysql_jdbc_download:
   5.1.49:
