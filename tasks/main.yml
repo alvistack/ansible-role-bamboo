@@ -75,6 +75,7 @@
     state: "{{ item.state | default('directory') }}"
   loop:
     - { dest: "/lib/systemd/system" }
+    - { dest: "/lib/systemd/system/bamboo.service.d" }
     - { dest: "{{ bamboo_download.dest | dirname }}" }
     - { dest: "{{ mysql_jdbc_download.dest | dirname }}" }
     - { dest: "{{ postgresql_jdbc_download.dest | dirname }}" }
@@ -138,7 +139,7 @@
   when: get_url_result is changed
   notify:
     - bamboo | systemctl daemon-reload
-    - bamboo | systemctl restart bamboo
+    - bamboo | systemctl restart bamboo.service
   tags: bamboo
 
 - name: copy templates
@@ -161,7 +162,7 @@
       group: "{{ bamboo_group }}"
   notify:
     - bamboo | systemctl daemon-reload
-    - bamboo | systemctl restart bamboo
+    - bamboo | systemctl restart bamboo.service
   tags: bamboo
 
 - name: prepare files
@@ -182,9 +183,9 @@
       group: "{{ bamboo_group }}"
   tags: bamboo
 
-- name: systemctl start bamboo
+- name: systemctl start bamboo.service
   service:
-    name: "bamboo"
+    name: "bamboo.service"
     state: "started"
     enabled: true
   changed_when: false

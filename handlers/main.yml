@@ -20,9 +20,9 @@
   changed_when: false
   ignore_errors: true
 
-- name: bamboo | systemctl restart bamboo
+- name: bamboo | systemctl restart bamboo.service
   service:
-    name: "bamboo"
+    name: "bamboo.service"
     state: "restarted"
     enabled: true
   loop: "{{ ansible_play_hosts }}"
