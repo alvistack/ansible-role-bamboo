@@ -181,6 +181,9 @@
     - dest: "{{ bamboo_catalina }}/conf/server.xml"
       owner: "{{ bamboo_owner }}"
       group: "{{ bamboo_group }}"
+  notify:
+    - bamboo | systemctl daemon-reload
+    - bamboo | systemctl restart bamboo.service
   tags: bamboo
 
 - name: systemctl start bamboo.service
