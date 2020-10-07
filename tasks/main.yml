@@ -176,6 +176,9 @@
     - bamboo | systemctl daemon-reload
     - bamboo | systemctl restart bamboo.service
 
+- name: flush handlers
+  meta: flush_handlers
+
 - name: systemctl start bamboo.service
   service:
     name: "bamboo.service"
@@ -183,6 +186,3 @@
     enabled: true
   changed_when: false
   ignore_errors: true
-
-- name: flush handlers
-  meta: flush_handlers
