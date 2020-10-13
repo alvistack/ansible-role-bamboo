@@ -43,8 +43,8 @@ bamboo_home: "/var/atlassian/application-data/bamboo"
 bamboo_catalina: "/opt/atlassian/bamboo"
 
 # JVM minimal and maximum memory usage.
-bamboo_jvm_minimum_memory: "1024m"
-bamboo_jvm_maximum_memory: "1024m"
+bamboo_jvm_minimum_memory: "2048m"
+bamboo_jvm_maximum_memory: "2048m"
 
 # Proxy and context path setup.
 bamboo_catalina_connector_proxyname: ~
