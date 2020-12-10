@@ -15,6 +15,10 @@
 # limitations under the License.
 
 _bamboo_download:
+  "7.2.1":
+    url: "https://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-7.2.1.tar.gz"
+    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-bamboo-7.2.1.tar.gz"
+    checksum: "sha1:53795c46f0d4dd0173c4ab6db5ab78746290ae63"
   "7.2.0":
     url: "https://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-7.2.0.tar.gz"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-bamboo-7.2.0.tar.gz"
