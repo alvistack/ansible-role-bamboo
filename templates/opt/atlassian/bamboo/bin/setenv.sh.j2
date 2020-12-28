@@ -18,7 +18,8 @@ JVM_SUPPORT_RECOMMENDED_ARGS="${JVM_SUPPORT_RECOMMENDED_ARGS:-"{{ bamboo_jvm_sup
 #JVM_SUPPORT_RECOMMENDED_ARGS="$JVM_SUPPORT_RECOMMENDED_ARGS -javaagent:../tools/byteman/lib/byteman.jar=listener:true"
 
 #
-# The following 2 settings control the minimum and maximum given to the Bamboo Java virtual machine.  In larger Bamboo instances, the maximum amount will need to be increased.
+# The following 2 settings control the minimum and maximum given to the Bamboo Java virtual machine.  In larger Bamboo instances, the amounts will need to be increased.
+# We recommend that the minimum and maximum be set to the same value.
 #
 JVM_MINIMUM_MEMORY="${JVM_MINIMUM_MEMORY:-"{{ bamboo_jvm_minimum_memory }}"}"
 JVM_MAXIMUM_MEMORY="${JVM_MAXIMUM_MEMORY:-"{{ bamboo_jvm_maximum_memory }}"}"
@@ -26,7 +27,7 @@ JVM_MAXIMUM_MEMORY="${JVM_MAXIMUM_MEMORY:-"{{ bamboo_jvm_maximum_memory }}"}"
 #
 # The following are the required arguments need for Bamboo standalone.
 #
-JVM_REQUIRED_ARGS="$JVM_REQUIRED_ARGS -Dcatalina.connector.scheme=${CATALINA_CONNECTOR_SCHEME:-"{{ bamboo_catalina_connector_scheme }}"} -Dcatalina.connector.secure=${CATALINA_CONNECTOR_SECURE:-"{{ bamboo_catalina_connector_secure }}"} -Dcatalina.connector.proxyName=${CATALINA_CONNECTOR_PROXYNAME:-"{{ bamboo_catalina_connector_proxyname }}"} -Dcatalina.connector.proxyPort=${CATALINA_CONNECTOR_PROXYPORT:-"{{ bamboo_catalina_connector_proxyport }}"} -Dcatalina.context.path=${CATALINA_CONTEXT_PATH:-"{{ bamboo_catalina_context_path }}"}"
+JVM_REQUIRED_ARGS="-XX:+UseG1GC -Dcatalina.connector.scheme=${CATALINA_CONNECTOR_SCHEME:-"{{ bamboo_catalina_connector_scheme }}"} -Dcatalina.connector.secure=${CATALINA_CONNECTOR_SECURE:-"{{ bamboo_catalina_connector_secure }}"} -Dcatalina.connector.proxyName=${CATALINA_CONNECTOR_PROXYNAME:-"{{ bamboo_catalina_connector_proxyname }}"} -Dcatalina.connector.proxyPort=${CATALINA_CONNECTOR_PROXYPORT:-"{{ bamboo_catalina_connector_proxyport }}"} -Dcatalina.context.path=${CATALINA_CONTEXT_PATH:-"{{ bamboo_catalina_context_path }}"}"
 
 #-----------------------------------------------------------------------------------
 #
