@@ -15,7 +15,7 @@
 # limitations under the License.
 
 # Bamboo version.
-bamboo_version: "7.2.1"
+bamboo_version: "7.2.2"
 
 # Bamboo download details.
 bamboo_download: "{{ _bamboo_download[bamboo_version] }}"
