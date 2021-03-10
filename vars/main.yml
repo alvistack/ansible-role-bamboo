@@ -15,6 +15,10 @@
 # limitations under the License.
 
 _bamboo_download:
+  "7.2.3":
+    url: "http://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-7.2.3.tar.gz"
+    dest: "/var/cache/ansible/dc96051a4e21901e80c3abd03a642dbaefb1040083680cb84bcadcbdbba62785/atlassian-bamboo-7.2.3.tar.gz"
+    checksum: "sha256:dc96051a4e21901e80c3abd03a642dbaefb1040083680cb84bcadcbdbba62785"
   "7.2.2":
     url: "http://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-7.2.2.tar.gz"
     dest: "/var/cache/ansible/a177c6a83e483eda2ab48c6e25f57955e4149fb8739b754f93684d63f7040308/atlassian-bamboo-7.2.2.tar.gz"
@@ -23,10 +27,6 @@ _bamboo_download:
     url: "http://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-7.2.1.tar.gz"
     dest: "/var/cache/ansible/26c7e0f15d621284a006862286c8b4e47efc0567d56d2c36b6a298163a1da86b/atlassian-bamboo-7.2.1.tar.gz"
     checksum: "sha256:26c7e0f15d621284a006862286c8b4e47efc0567d56d2c36b6a298163a1da86b"
-  "7.2.0":
-    url: "http://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-7.2.0.tar.gz"
-    dest: "/var/cache/ansible/a0ec883b785f35652c4f5c63019e49c332e5aee7454b0b90e244e2845ec4d8dd/atlassian-bamboo-7.2.0.tar.gz"
-    checksum: "sha256:a0ec883b785f35652c4f5c63019e49c332e5aee7454b0b90e244e2845ec4d8dd"
   "7.1.4":
     url: "http://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-7.1.4.tar.gz"
     dest: "/var/cache/ansible/5d5ff6985912c80b23da8d782a1cbe0e72afd842f149dae46e5ddc7beb7cc700/atlassian-bamboo-7.1.4.tar.gz"
