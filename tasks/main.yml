@@ -71,9 +71,6 @@
   loop:
     - { dest: "/lib/systemd/system" }
     - { dest: "/lib/systemd/system/bamboo.service.d" }
-    - { dest: "{{ bamboo_download.dest | dirname }}" }
-    - { dest: "{{ mysql_jdbc_download.dest | dirname }}" }
-    - { dest: "{{ postgresql_jdbc_download.dest | dirname }}" }
     - dest: "{{ bamboo_catalina }}"
       owner: "{{ bamboo_owner }}"
       group: "{{ bamboo_group }}"
@@ -86,11 +83,27 @@
     - dest: "{{ bamboo_home }}"
       owner: "{{ bamboo_owner }}"
       group: "{{ bamboo_group }}"
-  notify:
-    - bamboo | download archive
 
-- name: flush handlers
-  meta: flush_handlers
+- name: download archive
+  shell: |
+    set -euo pipefail
+    TMP_DIR="$(mktemp -d)" \
+      && cd $TMP_DIR \
+      && mkdir -p ./{{ item.dest | dirname }} \
+      && curl -skL -m 300 {{ item.url }} > ./{{ item.dest }} \
+      && echo -n "{{ item.sha256sum }} ./{{ item.dest }}" | sha256sum -c - \
+      && mkdir -p {{ item.dest | dirname }} \
+      && mv ./{{ item.dest }} {{ item.dest }} \
+      && rm -rf $TMP_DIR
+  args:
+    executable: "/bin/bash"
+    creates: "{{ item.dest | dirname }}"
+  loop:
+    - "{{ bamboo_download }}"
+    - "{{ mysql_jdbc_download }}"
+    - "{{ postgresql_jdbc_download }}"
+  register: result
+  until: result is succeeded
 
 - name: unarchive package
   shell: |
