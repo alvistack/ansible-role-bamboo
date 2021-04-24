@@ -50,6 +50,11 @@
                 port="8085"
                 protocol="HTTP/1.1"
 
+                proxyName="{{ bamboo_catalina_connector_proxyname }}"
+                proxyPort="{{ bamboo_catalina_connector_proxyport }}"
+                scheme="{{ bamboo_catalina_connector_scheme }}"
+                secure="{{ bamboo_catalina_connector_secure }}"
+
                 maxThreads="150" minSpareThreads="25"
                 connectionTimeout="20000"
                 disableUploadTimeout="true"
@@ -60,11 +65,6 @@
 
                 useBodyEncodingForURI="true"
                 URIEncoding="UTF-8"
-
-                proxyHost="${catalina.connector.proxyHost}"
-                proxyPort="${catalina.connector.proxyPort}"
-                scheme="${catalina.connector.scheme}"
-                secure="${catalina.connector.secure}"
 
                 redirectPort="8443">
             <UpgradeProtocol className="org.apache.coyote.http2.Http2Protocol" />
@@ -123,7 +123,7 @@
         <Engine name="Catalina" defaultHost="localhost">
             <Host name="localhost" appBase="webapps" unpackWARs="true" autoDeploy="true">
 
-                <Context path="${catalina.context.path}" docBase="${catalina.home}/atlassian-bamboo" reloadable="false" useHttpOnly="true">
+                <Context path="{{ bamboo_catalina_context_path }}" docBase="${catalina.home}/atlassian-bamboo" reloadable="false" useHttpOnly="true">
 
                     <!--<Resource name="UserTransaction" auth="Container" type="javax.transaction.UserTransaction"-->
                               <!--factory="org.objectweb.jotm.UserTransactionFactory" jotm.timeout="60"/>-->

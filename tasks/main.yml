@@ -183,7 +183,6 @@
     value: "{{ bamboo_session_timeout | int }}"
     state: "present"
   notify:
-    - bamboo | systemctl daemon-reload
     - bamboo | systemctl restart bamboo.service
 
 - name: flush handlers
