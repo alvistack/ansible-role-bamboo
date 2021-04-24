@@ -27,14 +27,7 @@ JVM_MAXIMUM_MEMORY="{{ bamboo_jvm_maximum_memory }}"
 #
 # The following are the required arguments need for Bamboo standalone.
 #
-JVM_REQUIRED_ARGS=" \
--XX:+UseG1GC \
--Dcatalina.connector.scheme={{ bamboo_catalina_connector_scheme }} \
--Dcatalina.connector.secure={{ bamboo_catalina_connector_secure }} \
--Dcatalina.connector.proxyName={{ bamboo_catalina_connector_proxyname }} \
--Dcatalina.connector.proxyPort={{ bamboo_catalina_connector_proxyport }} \
--Dcatalina.context.path={{ bamboo_catalina_context_path }} \
-"
+: ${JVM_REQUIRED_ARGS:="-XX:+UseG1GC"}
 
 #-----------------------------------------------------------------------------------
 #
