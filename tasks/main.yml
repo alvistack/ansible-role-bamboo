@@ -75,9 +75,7 @@
     mode: "{{ item.mode | default('0755') }}"
     state: "{{ item.state | default('directory') }}"
   loop:
-    - { dest: "/lib/systemd/system/bamboo.service.d", state: "absent" }
-    - { dest: "/usr/local/lib/systemd/system" }
-    - { dest: "/usr/local/lib/systemd/system/bamboo.service.d" }
+    - { dest: "/lib/systemd/system" }
     - dest: "{{ bamboo_catalina }}"
       owner: "{{ bamboo_owner }}"
       group: "{{ bamboo_group }}"
@@ -145,7 +143,7 @@
     group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0644') }}"
   loop:
-    - { dest: "/usr/local/lib/systemd/system/bamboo.service" }
+    - { dest: "/lib/systemd/system/bamboo.service" }
     - dest: "{{ bamboo_catalina }}/bin/setenv.sh"
       src: "./templates/opt/atlassian/bamboo/bin/setenv.sh.j2"
       owner: "{{ bamboo_owner }}"
@@ -167,8 +165,7 @@
     mode: "{{ item.mode | default('0644') }}"
     state: "{{ item.state | default('file') }}"
   loop:
-    - { dest: "/lib/systemd/system/bamboo.service", state: "absent" }
-    - { dest: "/usr/local/lib/systemd/system/bamboo.service" }
+    - { dest: "/lib/systemd/system/bamboo.service" }
     - dest: "{{ bamboo_catalina }}/bin/setenv.sh"
       owner: "{{ bamboo_owner }}"
       group: "{{ bamboo_group }}"
