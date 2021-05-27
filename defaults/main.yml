@@ -14,8 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Bamboo release.
+bamboo_release: "7.2"
+
 # Bamboo version.
-bamboo_version: "7.2.4"
+bamboo_version: "{{ _bamboo_version[bamboo_release] }}"
 
 # Bamboo download details.
 bamboo_download: "{{ _bamboo_download[bamboo_version] }}"

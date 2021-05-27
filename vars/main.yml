@@ -14,6 +14,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+_bamboo_version:
+  "7.2": "7.2.4"
+  "7.1": "7.1.4"
+
 _bamboo_download:
   "7.2.4":
     url: "http://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-7.2.4.tar.gz"
