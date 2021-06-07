@@ -20,7 +20,7 @@ _postgresql_jdbc_version:
 _postgresql_jdbc_download:
   "42.2.20":
     url: "http://jdbc.postgresql.org/download/postgresql-42.2.20.jar"
-    dest: "/tmp/708b2938aea81f32b8b35440da233828284a100e6f2212a7ab1eeaf4b3a6514e/postgresql-42.2.20.jar"
+    dest: "/var/cache/ansible/708b2938aea81f32b8b35440da233828284a100e6f2212a7ab1eeaf4b3a6514e/postgresql-42.2.20.jar"
     checksum: "708b2938aea81f32b8b35440da233828284a100e6f2212a7ab1eeaf4b3a6514e"
 
 _bamboo_version:
@@ -30,25 +30,25 @@ _bamboo_version:
 _bamboo_download:
   "7.2.4":
     url: "http://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-7.2.4.tar.gz"
-    dest: "/tmp/2abd901092665fc68fa2a78f5da6a9a34d71e39845646b92992e73e9a80af162/atlassian-bamboo-7.2.4.tar.gz"
+    dest: "/var/cache/ansible/2abd901092665fc68fa2a78f5da6a9a34d71e39845646b92992e73e9a80af162/atlassian-bamboo-7.2.4.tar.gz"
     checksum: "2abd901092665fc68fa2a78f5da6a9a34d71e39845646b92992e73e9a80af162"
   "7.2.3":
     url: "http://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-7.2.3.tar.gz"
-    dest: "/tmp/dc96051a4e21901e80c3abd03a642dbaefb1040083680cb84bcadcbdbba62785/atlassian-bamboo-7.2.3.tar.gz"
+    dest: "/var/cache/ansible/dc96051a4e21901e80c3abd03a642dbaefb1040083680cb84bcadcbdbba62785/atlassian-bamboo-7.2.3.tar.gz"
     checksum: "dc96051a4e21901e80c3abd03a642dbaefb1040083680cb84bcadcbdbba62785"
   "7.2.2":
     url: "http://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-7.2.2.tar.gz"
-    dest: "/tmp/a177c6a83e483eda2ab48c6e25f57955e4149fb8739b754f93684d63f7040308/atlassian-bamboo-7.2.2.tar.gz"
+    dest: "/var/cache/ansible/a177c6a83e483eda2ab48c6e25f57955e4149fb8739b754f93684d63f7040308/atlassian-bamboo-7.2.2.tar.gz"
     checksum: "a177c6a83e483eda2ab48c6e25f57955e4149fb8739b754f93684d63f7040308"
   "7.1.4":
     url: "http://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-7.1.4.tar.gz"
-    dest: "/tmp/5d5ff6985912c80b23da8d782a1cbe0e72afd842f149dae46e5ddc7beb7cc700/atlassian-bamboo-7.1.4.tar.gz"
+    dest: "/var/cache/ansible/5d5ff6985912c80b23da8d782a1cbe0e72afd842f149dae46e5ddc7beb7cc700/atlassian-bamboo-7.1.4.tar.gz"
     checksum: "5d5ff6985912c80b23da8d782a1cbe0e72afd842f149dae46e5ddc7beb7cc700"
   "7.1.3":
     url: "http://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-7.1.3.tar.gz"
-    dest: "/tmp/38e04e58f38fb3a25ec7194e0faaa26309d13207738a5a7cd74e201091a31ef3/atlassian-bamboo-7.1.3.tar.gz"
+    dest: "/var/cache/ansible/38e04e58f38fb3a25ec7194e0faaa26309d13207738a5a7cd74e201091a31ef3/atlassian-bamboo-7.1.3.tar.gz"
     checksum: "38e04e58f38fb3a25ec7194e0faaa26309d13207738a5a7cd74e201091a31ef3"
   "7.1.2":
     url: "http://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-7.1.2.tar.gz"
-    dest: "/tmp/d01622a4003cac9e90fd988d5c8999613169d37af9ac6cf97e2c5c64461963ba/atlassian-bamboo-7.1.2.tar.gz"
+    dest: "/var/cache/ansible/d01622a4003cac9e90fd988d5c8999613169d37af9ac6cf97e2c5c64461963ba/atlassian-bamboo-7.1.2.tar.gz"
     checksum: "d01622a4003cac9e90fd988d5c8999613169d37af9ac6cf97e2c5c64461963ba"
