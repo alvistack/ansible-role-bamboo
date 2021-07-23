@@ -1,13 +1,9 @@
 # Ansible Role for Bamboo
 
-[![Gitlab pipeline
-status](https://img.shields.io/gitlab/pipeline/alvistack/ansible-role-bamboo/master)](https://gitlab.com/alvistack/ansible-role-bamboo/-/pipelines)
-[![GitHub
-release](https://img.shields.io/github/release/alvistack/ansible-role-bamboo.svg)](https://github.com/alvistack/ansible-role-bamboo/releases)
-[![GitHub
-license](https://img.shields.io/github/license/alvistack/ansible-role-bamboo.svg)](https://github.com/alvistack/ansible-role-bamboo/blob/master/LICENSE)
-[![Ansible
-Role](https://img.shields.io/badge/galaxy-alvistack.bamboo-blue.svg)](https://galaxy.ansible.com/alvistack/bamboo)
+[![Gitlab pipeline status](https://img.shields.io/gitlab/pipeline/alvistack/ansible-role-bamboo/master)](https://gitlab.com/alvistack/ansible-role-bamboo/-/pipelines)
+[![GitHub release](https://img.shields.io/github/release/alvistack/ansible-role-bamboo.svg)](https://github.com/alvistack/ansible-role-bamboo/releases)
+[![GitHub license](https://img.shields.io/github/license/alvistack/ansible-role-bamboo.svg)](https://github.com/alvistack/ansible-role-bamboo/blob/master/LICENSE)
+[![Ansible Role](https://img.shields.io/badge/galaxy-alvistack.bamboo-blue.svg)](https://galaxy.ansible.com/alvistack/bamboo)
 
 Ansible Role for Atlassian Bamboo Installation.
 
@@ -43,8 +39,7 @@ This role could simply deploy to `localhost` as below:
 ## License
 
   - Code released under [Apache License 2.0](LICENSE)
-  - Docs released under [CC BY
-    4.0](http://creativecommons.org/licenses/by/4.0/)
+  - Docs released under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/)
 
 ## Author Information
 
