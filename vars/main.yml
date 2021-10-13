@@ -24,10 +24,14 @@ _postgresql_jdbc_download:
     checksum: "83ff945bb4f5dac8ea31b7bd5324433f5593dbbcb58b63763232bbef186d4772"
 
 _bamboo_version:
-  "8.0": "8.0.2"
+  "8.0": "8.0.3"
   "7.2": "7.2.5"
 
 _bamboo_download:
+  "8.0.3":
+    url: "http://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-8.0.3.tar.gz"
+    dest: "/var/cache/ansible/0d8d26dcb4f28629782f8e2d7e4246aa50250d37eb3729dd7830cdd4ed38a362/atlassian-bamboo-8.0.3.tar.gz"
+    checksum: "0d8d26dcb4f28629782f8e2d7e4246aa50250d37eb3729dd7830cdd4ed38a362"
   "8.0.2":
     url: "http://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-8.0.2.tar.gz"
     dest: "/var/cache/ansible/edeb5a72cb538b98a28f11fc0a6e4f413e1f07e68fa5f14f55bc135c055046a0/atlassian-bamboo-8.0.2.tar.gz"
@@ -36,10 +40,6 @@ _bamboo_download:
     url: "http://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-8.0.1.tar.gz"
     dest: "/var/cache/ansible/0e685a200b3960682a8d768b528f113f5b5c41d672d82cb54b64261f483d6bd2/atlassian-bamboo-8.0.1.tar.gz"
     checksum: "0e685a200b3960682a8d768b528f113f5b5c41d672d82cb54b64261f483d6bd2"
-  "8.0.0":
-    url: "http://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-8.0.0.tar.gz"
-    dest: "/var/cache/ansible/ffd77eccc31941a6f992f88353b78ef81c3b35c42565bb7a67ba527b16ebe369/atlassian-bamboo-8.0.0.tar.gz"
-    checksum: "ffd77eccc31941a6f992f88353b78ef81c3b35c42565bb7a67ba527b16ebe369"
   "7.2.5":
     url: "http://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-7.2.5.tar.gz"
     dest: "/var/cache/ansible/829f2a747b90f7de6a0386a2bf464f7549bc53111f38755d81baf16f99eb1982/atlassian-bamboo-7.2.5.tar.gz"
