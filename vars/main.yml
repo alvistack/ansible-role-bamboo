@@ -24,10 +24,14 @@ _postgresql_jdbc_download:
     checksum: "8370570857da86eb4a76dd3d8505d34bac0c18186741fa83a6820a10fa441cb4"
 
 _bamboo_version:
+  "8.1": "8.1.1"
   "8.0": "8.0.5"
-  "7.2": "7.2.5"
 
 _bamboo_download:
+  "8.1.1":
+    url: "http://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-8.1.1.tar.gz"
+    dest: "/var/cache/ansible/6ec3650bcef5f349224f3dc2b91760947a4b7c372349979359100a32f0314659/atlassian-bamboo-8.1.1.tar.gz"
+    checksum: "6ec3650bcef5f349224f3dc2b91760947a4b7c372349979359100a32f0314659"
   "8.0.5":
     url: "http://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-8.0.5.tar.gz"
     dest: "/var/cache/ansible/ed6a6b8783dd66d911c8de9d75546a9c8cdc815a5aa539091b000f6af6f84880/atlassian-bamboo-8.0.5.tar.gz"
@@ -40,15 +44,3 @@ _bamboo_download:
     url: "http://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-8.0.3.tar.gz"
     dest: "/var/cache/ansible/0d8d26dcb4f28629782f8e2d7e4246aa50250d37eb3729dd7830cdd4ed38a362/atlassian-bamboo-8.0.3.tar.gz"
     checksum: "0d8d26dcb4f28629782f8e2d7e4246aa50250d37eb3729dd7830cdd4ed38a362"
-  "7.2.5":
-    url: "http://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-7.2.5.tar.gz"
-    dest: "/var/cache/ansible/829f2a747b90f7de6a0386a2bf464f7549bc53111f38755d81baf16f99eb1982/atlassian-bamboo-7.2.5.tar.gz"
-    checksum: "829f2a747b90f7de6a0386a2bf464f7549bc53111f38755d81baf16f99eb1982"
-  "7.2.4":
-    url: "http://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-7.2.4.tar.gz"
-    dest: "/var/cache/ansible/2abd901092665fc68fa2a78f5da6a9a34d71e39845646b92992e73e9a80af162/atlassian-bamboo-7.2.4.tar.gz"
-    checksum: "2abd901092665fc68fa2a78f5da6a9a34d71e39845646b92992e73e9a80af162"
-  "7.2.3":
-    url: "http://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-7.2.3.tar.gz"
-    dest: "/var/cache/ansible/dc96051a4e21901e80c3abd03a642dbaefb1040083680cb84bcadcbdbba62785/atlassian-bamboo-7.2.3.tar.gz"
-    checksum: "dc96051a4e21901e80c3abd03a642dbaefb1040083680cb84bcadcbdbba62785"
