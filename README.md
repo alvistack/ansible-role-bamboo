@@ -3,7 +3,7 @@
 <img src="/alvistack.svg" width="75" alt="AlviStack">
 
 [![Gitlab pipeline status](https://img.shields.io/gitlab/pipeline/alvistack/ansible-role-bamboo/master)](https://gitlab.com/alvistack/ansible-role-bamboo/-/pipelines)
-[![GitHub release](https://img.shields.io/github/release/alvistack/ansible-role-bamboo.svg)](https://github.com/alvistack/ansible-role-bamboo/releases)
+[![GitHub tag](https://img.shields.io/github/tag/alvistack/ansible-role-bamboo.svg)](https://github.com/alvistack/ansible-role-bamboo/tags)
 [![GitHub license](https://img.shields.io/github/license/alvistack/ansible-role-bamboo.svg)](https://github.com/alvistack/ansible-role-bamboo/blob/master/LICENSE)
 [![Ansible Role](https://img.shields.io/badge/galaxy-alvistack.bamboo-blue.svg)](https://galaxy.ansible.com/alvistack/bamboo)
 
@@ -17,7 +17,7 @@ This role was designed for:
 
   - Ubuntu 18.04, 20.04, 21.04, 21.10
   - CentOS 7, 8 Stream
-  - openSUSE Leap 15.2, Leap 15.3, Tumbleweed
+  - openSUSE Leap 15.3, Tumbleweed
   - Debian 10, 11
   - Fedora 34, 35
   - RHEL 7, 8
