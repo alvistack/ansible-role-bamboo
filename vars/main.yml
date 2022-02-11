@@ -15,19 +15,23 @@
 # limitations under the License.
 
 _postgresql_jdbc_version:
-  "42.3": "42.3.1"
+  "42.3": "42.3.2"
 
 _postgresql_jdbc_download:
-  "42.3.1":
-    url: "http://jdbc.postgresql.org/download/postgresql-42.3.1.jar"
-    dest: "/var/cache/ansible/8370570857da86eb4a76dd3d8505d34bac0c18186741fa83a6820a10fa441cb4/postgresql-42.3.1.jar"
-    checksum: "8370570857da86eb4a76dd3d8505d34bac0c18186741fa83a6820a10fa441cb4"
+  "42.3.2":
+    url: "http://jdbc.postgresql.org/download/postgresql-42.3.2.jar"
+    dest: "/var/cache/ansible/b9013e092d4a6dae404b9b2eaeaaec82e7583dd450911fdc1e436a5aa62a25cf/postgresql-42.3.2.jar"
+    checksum: "b9013e092d4a6dae404b9b2eaeaaec82e7583dd450911fdc1e436a5aa62a25cf"
 
 _bamboo_version:
-  "8.1": "8.1.1"
+  "8.1": "8.1.2"
   "8.0": "8.0.5"
 
 _bamboo_download:
+  "8.1.2":
+    url: "http://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-8.1.2.tar.gz"
+    dest: "/var/cache/ansible/93fcd3f3cf9f1ee99d8fdeb6e2ab2adc2a8166a53dad02e6e8a09166f85011b3/atlassian-bamboo-8.1.2.tar.gz"
+    checksum: "93fcd3f3cf9f1ee99d8fdeb6e2ab2adc2a8166a53dad02e6e8a09166f85011b3"
   "8.1.1":
     url: "http://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-8.1.1.tar.gz"
     dest: "/var/cache/ansible/6ec3650bcef5f349224f3dc2b91760947a4b7c372349979359100a32f0314659/atlassian-bamboo-8.1.1.tar.gz"
