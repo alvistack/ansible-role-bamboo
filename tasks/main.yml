@@ -15,10 +15,10 @@
 # limitations under the License.
 
 - name: include default variables
-  include_vars: "../vars/main.yml"
+  ansible.builtin.include_vars: "../vars/main.yml"
 
 - name: include release specific variables
-  include_vars: "{{ _loop_var }}"
+  ansible.builtin.include_vars: "{{ _loop_var }}"
   loop: "{{ query('first_found', _params) }}"
   loop_control:
     loop_var: _loop_var
@@ -54,45 +54,45 @@
       skip: true
 
 - name: groupadd
-  group:
+  ansible.builtin.group:
     name: "{{ bamboo_group }}"
     system: true
     state: "present"
 
 - name: useradd
-  user:
+  ansible.builtin.user:
     name: "{{ bamboo_owner }}"
-    group: "{{ bamboo_group }}"
+    ansible.builtin.group: "{{ bamboo_group }}"
     home: "{{ bamboo_home }}"
-    shell: "/usr/sbin/nologin"
+    ansible.builtin.shell: "/usr/sbin/nologin"
     system: true
     create_home: false
     state: "present"
 
 - name: prepare directories
-  file:
+  ansible.builtin.file:
     dest: "{{ item.dest }}"
     owner: "{{ item.owner | default('root') }}"
-    group: "{{ item.group | default('root') }}"
+    ansible.builtin.group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0755') }}"
     state: "{{ item.state | default('directory') }}"
   loop:
     - { dest: "/etc/systemd/system" }
     - dest: "{{ bamboo_catalina }}"
       owner: "{{ bamboo_owner }}"
-      group: "{{ bamboo_group }}"
+      ansible.builtin.group: "{{ bamboo_group }}"
     - dest: "{{ bamboo_catalina }}/bin"
       owner: "{{ bamboo_owner }}"
-      group: "{{ bamboo_group }}"
+      ansible.builtin.group: "{{ bamboo_group }}"
     - dest: "{{ bamboo_catalina }}/conf"
       owner: "{{ bamboo_owner }}"
-      group: "{{ bamboo_group }}"
+      ansible.builtin.group: "{{ bamboo_group }}"
     - dest: "{{ bamboo_home }}"
       owner: "{{ bamboo_owner }}"
-      group: "{{ bamboo_group }}"
+      ansible.builtin.group: "{{ bamboo_group }}"
 
 - name: download archive
-  shell: |
+  ansible.builtin.shell: |
     set -euxo pipefail
     mkdir -p /var/log/ansible
     exec &> >(tee -a /var/log/ansible/{{ item.checksum }}-get_url.log)
@@ -114,7 +114,7 @@
   until: result is succeeded
 
 - name: unarchive package
-  shell: |
+  ansible.builtin.shell: |
     set -euxo pipefail
     mkdir -p /var/log/ansible
     exec &> >(tee -a /var/log/ansible/{{ bamboo_download.checksum }}-unarchive.log)
@@ -141,43 +141,43 @@
     - bamboo | systemctl restart bamboo.service
 
 - name: copy templates
-  template:
+  ansible.builtin.template:
     dest: "{{ item.dest }}"
     src: "{{ item.src | default('./templates' + item.dest + '.j2') }}"
     owner: "{{ item.owner | default('root') }}"
-    group: "{{ item.group | default('root') }}"
+    ansible.builtin.group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0644') }}"
   loop:
     - { dest: "/etc/systemd/system/bamboo.service" }
     - dest: "{{ bamboo_catalina }}/bin/setenv.sh"
       src: "./templates/opt/atlassian/bamboo/bin/setenv.sh.j2"
       owner: "{{ bamboo_owner }}"
-      group: "{{ bamboo_group }}"
+      ansible.builtin.group: "{{ bamboo_group }}"
       mode: "0755"
     - dest: "{{ bamboo_catalina }}/conf/server.xml"
       src: "./templates/opt/atlassian/bamboo/conf/server.xml.j2"
       owner: "{{ bamboo_owner }}"
-      group: "{{ bamboo_group }}"
+      ansible.builtin.group: "{{ bamboo_group }}"
   notify:
     - bamboo | systemctl daemon-reload
     - bamboo | systemctl restart bamboo.service
 
 - name: prepare files
-  file:
+  ansible.builtin.file:
     dest: "{{ item.dest }}"
     owner: "{{ item.owner | default('root') }}"
-    group: "{{ item.group | default('root') }}"
+    ansible.builtin.group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0644') }}"
     state: "{{ item.state | default('file') }}"
   loop:
     - { dest: "/etc/systemd/system/bamboo.service" }
     - dest: "{{ bamboo_catalina }}/bin/setenv.sh"
       owner: "{{ bamboo_owner }}"
-      group: "{{ bamboo_group }}"
+      ansible.builtin.group: "{{ bamboo_group }}"
       mode: "0755"
     - dest: "{{ bamboo_catalina }}/conf/server.xml"
       owner: "{{ bamboo_owner }}"
-      group: "{{ bamboo_group }}"
+      ansible.builtin.group: "{{ bamboo_group }}"
   notify:
     - bamboo | systemctl daemon-reload
     - bamboo | systemctl restart bamboo.service
@@ -196,10 +196,10 @@
     - bamboo | systemctl restart bamboo.service
 
 - name: flush handlers
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
 
 - name: systemctl start bamboo.service
-  service:
+  ansible.builtin.service:
     name: "bamboo.service"
     state: "started"
     enabled: true

@@ -15,13 +15,13 @@
 # limitations under the License.
 
 - name: bamboo | systemctl daemon-reload
-  systemd:
+  ansible.builtin.systemd:
     daemon_reload: true
   changed_when: false
   failed_when: false
 
 - name: bamboo | systemctl restart bamboo.service
-  service:
+  ansible.builtin.service:
     name: "bamboo.service"
     state: "restarted"
     enabled: true
