@@ -15,19 +15,23 @@
 # limitations under the License.
 
 _postgresql_jdbc_version:
-  "42.3": "42.3.6"
+  "42.4": "42.4.0"
 
 _postgresql_jdbc_download:
-  "42.3.6":
-    url: "http://jdbc.postgresql.org/download/postgresql-42.3.6.jar"
-    dest: "/var/cache/ansible/43666128a1d1d6b36870b858973a170d3fa6293c969684fe88f42a71140293a0/postgresql-42.3.6.jar"
-    checksum: "43666128a1d1d6b36870b858973a170d3fa6293c969684fe88f42a71140293a0"
+  "42.4.0":
+    url: "http://jdbc.postgresql.org/download/postgresql-42.4.0.jar"
+    dest: "/var/cache/ansible/fe25b9c0a2c59458504ec88862853df522ee87f8a02564835d537c29ae4cb125/postgresql-42.4.0.jar"
+    checksum: "fe25b9c0a2c59458504ec88862853df522ee87f8a02564835d537c29ae4cb125"
 
 _bamboo_version:
-  "8.2": "8.2.3"
+  "8.2": "8.2.4"
   "8.1": "8.1.5"
 
 _bamboo_download:
+  "8.2.4":
+    url: "http://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-8.2.4.tar.gz"
+    dest: "/var/cache/ansible/29465c00b63d54272a29e98119773c25b10c42f868fd948c99ee60d037670f1b/atlassian-bamboo-8.2.4.tar.gz"
+    checksum: "29465c00b63d54272a29e98119773c25b10c42f868fd948c99ee60d037670f1b"
   "8.2.3":
     url: "http://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-8.2.3.tar.gz"
     dest: "/var/cache/ansible/248f9404afe039fb67af019501cd7e5fb70be24bc21c6f70c7a179c9959851e6/atlassian-bamboo-8.2.3.tar.gz"
@@ -36,10 +40,6 @@ _bamboo_download:
     url: "http://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-8.2.2.tar.gz"
     dest: "/var/cache/ansible/1887b8db9549b8be49fbe37add7ea768d67fff0a8e4e77a2e8e226a1d1ec220e/atlassian-bamboo-8.2.2.tar.gz"
     checksum: "1887b8db9549b8be49fbe37add7ea768d67fff0a8e4e77a2e8e226a1d1ec220e"
-  "8.2.1":
-    url: "http://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-8.2.1.tar.gz"
-    dest: "/var/cache/ansible/6ca4e89c57c8cd075734e3271b79b5838c6de8d4d2980bf54edeec1ddfb537b8/atlassian-bamboo-8.2.1.tar.gz"
-    checksum: "6ca4e89c57c8cd075734e3271b79b5838c6de8d4d2980bf54edeec1ddfb537b8"
   "8.1.5":
     url: "http://product-downloads.atlassian.com/software/bamboo/downloads/atlassian-bamboo-8.1.5.tar.gz"
     dest: "/var/cache/ansible/95f8651e29228dcff0c0c179df8e28d761fce5919fdd51474d024ccd6b251231/atlassian-bamboo-8.1.5.tar.gz"
