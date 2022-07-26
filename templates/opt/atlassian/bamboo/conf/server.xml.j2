@@ -3,7 +3,7 @@
 <!--
    ====================================================================================
 
-   Atlassian Bamboo Server Edition Tomcat Configuration.
+   Atlassian Bamboo Data Center Tomcat Configuration.
 
 
    See the following for more information
@@ -50,10 +50,42 @@
                 port="8085"
                 protocol="HTTP/1.1"
 
+                maxThreads="150" minSpareThreads="25"
+                connectionTimeout="20000"
+                disableUploadTimeout="true"
+                acceptCount="100"
+
+                enableLookups="false"
+                maxHttpHeaderSize="8192"
+
+                useBodyEncodingForURI="true"
+                URIEncoding="UTF-8"
+
                 proxyName="{{ bamboo_catalina_connector_proxyname }}"
                 proxyPort="{{ bamboo_catalina_connector_proxyport }}"
                 scheme="{{ bamboo_catalina_connector_scheme }}"
                 secure="{{ bamboo_catalina_connector_secure }}"
+
+                redirectPort="8443">
+            <UpgradeProtocol className="org.apache.coyote.http2.Http2Protocol" />
+        </Connector>
+
+        <!--
+        ====================================================================================
+        To run Bamboo DC behind a load balancer configured with HTTPS you will
+        need to:
+            * Include the proxy configurations without the certificate options
+            * Include the load balancer url
+            * Make sure the Base URL of Bamboo is using the load balancer url
+
+        Remember that it will be the load balancer that will contain all the
+        HTTPS configuration, not the Bamboo DC nodes.
+        ====================================================================================
+        -->
+        <!--
+            <Connector
+                port="8085"
+                protocol="HTTP/1.1"
 
                 maxThreads="150" minSpareThreads="25"
                 connectionTimeout="20000"
@@ -66,9 +98,14 @@
                 useBodyEncodingForURI="true"
                 URIEncoding="UTF-8"
 
+                proxyName="<INSERT THE LOAD BALANCER URL>"
+                proxyPort="443"
+                scheme="https"
+
                 redirectPort="8443">
             <UpgradeProtocol className="org.apache.coyote.http2.Http2Protocol" />
         </Connector>
+        -->
 
         <!--
         ====================================================================================
