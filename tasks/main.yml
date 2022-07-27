@@ -69,77 +69,6 @@
     create_home: false
     state: "present"
 
-- name: prepare directories
-  ansible.builtin.file:
-    dest: "{{ item.dest }}"
-    owner: "{{ item.owner | default('root') }}"
-    group: "{{ item.group | default('root') }}"
-    mode: "{{ item.mode | default('0755') }}"
-    state: "{{ item.state | default('directory') }}"
-  loop:
-    - { dest: "/etc/systemd/system" }
-    - dest: "{{ bamboo_catalina }}"
-      owner: "{{ bamboo_owner }}"
-      group: "{{ bamboo_group }}"
-    - dest: "{{ bamboo_catalina }}/bin"
-      owner: "{{ bamboo_owner }}"
-      group: "{{ bamboo_group }}"
-    - dest: "{{ bamboo_catalina }}/conf"
-      owner: "{{ bamboo_owner }}"
-      group: "{{ bamboo_group }}"
-    - dest: "{{ bamboo_home }}"
-      owner: "{{ bamboo_owner }}"
-      group: "{{ bamboo_group }}"
-
-- name: download archive
-  ansible.builtin.shell: |
-    set -euxo pipefail
-    mkdir -p /var/log/ansible
-    exec &> >(tee -a /var/log/ansible/{{ item.checksum }}-get_url.log)
-    TMP_DIR="$(mktemp -d)" \
-      && cd $TMP_DIR \
-      && mkdir -p .{{ item.dest | dirname }} \
-      && curl -skL -m 300 {{ item.url }} > .{{ item.dest }} \
-      && echo -n "{{ item.checksum }} .{{ item.dest }}" | sha256sum -c - \
-      && mkdir -p {{ item.dest | dirname }} \
-      && mv .{{ item.dest }} {{ item.dest }} \
-      && rm -rf $TMP_DIR
-  args:
-    executable: "/bin/bash"
-    creates: "/var/log/ansible/{{ item.checksum }}-get_url.log"
-  loop:
-    - "{{ bamboo_download }}"
-    - "{{ postgresql_jdbc_download }}"
-  register: result
-  until: result is succeeded
-
-- name: unarchive package
-  ansible.builtin.shell: |
-    set -euxo pipefail
-    mkdir -p /var/log/ansible
-    exec &> >(tee -a /var/log/ansible/{{ bamboo_download.checksum }}-unarchive.log)
-    rm -rf {{ bamboo_catalina }} \
-      && mkdir -p {{ bamboo_catalina }}
-    cd {{ bamboo_catalina }}
-    TMP_DIR="$(mktemp -d)" \
-      && tar -zx -C $TMP_DIR -f {{ bamboo_download.dest }} \
-      && cp -rfT $TMP_DIR/* . \
-      && rm -rf $TMP_DIR
-    cd {{ bamboo_catalina }}/lib
-    rm -rf *postgresql*.jar
-    cp {{ postgresql_jdbc_download.dest }} .
-    chown -Rf {{ bamboo_owner }}:{{ bamboo_group }} {{ bamboo_catalina }}
-    chmod 0755 \
-      {{ bamboo_catalina }} \
-      {{ bamboo_catalina }}/bin \
-      {{ bamboo_catalina }}/conf
-  args:
-    executable: "/bin/bash"
-    creates: "/var/log/ansible/{{ bamboo_download.checksum }}-unarchive.log"
-  notify:
-    - bamboo | systemctl daemon-reload
-    - bamboo | systemctl restart bamboo.service
-
 - name: copy templates
   ansible.builtin.template:
     dest: "{{ item.dest }}"
@@ -148,7 +77,6 @@
     group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0644') }}"
   loop:
-    - { dest: "/etc/systemd/system/bamboo.service" }
     - dest: "{{ bamboo_catalina }}/bin/setenv.sh"
       src: "./templates/opt/atlassian/bamboo/bin/setenv.sh.j2"
       owner: "{{ bamboo_owner }}"
@@ -159,7 +87,6 @@
       owner: "{{ bamboo_owner }}"
       group: "{{ bamboo_group }}"
   notify:
-    - bamboo | systemctl daemon-reload
     - bamboo | systemctl restart bamboo.service
 
 - name: prepare files
@@ -170,7 +97,6 @@
     mode: "{{ item.mode | default('0644') }}"
     state: "{{ item.state | default('file') }}"
   loop:
-    - { dest: "/etc/systemd/system/bamboo.service" }
     - dest: "{{ bamboo_catalina }}/bin/setenv.sh"
       owner: "{{ bamboo_owner }}"
       group: "{{ bamboo_group }}"
@@ -179,7 +105,6 @@
       owner: "{{ bamboo_owner }}"
       group: "{{ bamboo_group }}"
   notify:
-    - bamboo | systemctl daemon-reload
     - bamboo | systemctl restart bamboo.service
 
 - name: patch {{ bamboo_catalina }}/atlassian-bamboo/WEB-INF/web.xml

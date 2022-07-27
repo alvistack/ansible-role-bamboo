@@ -10,7 +10,7 @@ BAMBOO_CATALINA="{{ bamboo_catalina }}"
 #
 #  Occasionally Atlassian Support may recommend that you set some specific JVM arguments.  You can use this variable below to do that.
 #
-JVM_SUPPORT_RECOMMENDED_ARGS="{{ bamboo_jvm_support_recommended_args }}"
+: ${JVM_SUPPORT_RECOMMENDED_ARGS:="{{ bamboo_jvm_support_recommended_args }}"}
 
 #
 #  Uncomment the line below to enable the Byteman agent.
@@ -21,8 +21,8 @@ JVM_SUPPORT_RECOMMENDED_ARGS="{{ bamboo_jvm_support_recommended_args }}"
 # The following 2 settings control the minimum and maximum given to the Bamboo Java virtual machine.  In larger Bamboo instances, the amounts will need to be increased.
 # We recommend that the minimum and maximum be set to the same value.
 #
-JVM_MINIMUM_MEMORY="{{ bamboo_jvm_minimum_memory }}"
-JVM_MAXIMUM_MEMORY="{{ bamboo_jvm_maximum_memory }}"
+: ${JVM_MINIMUM_MEMORY:="{{ bamboo_jvm_minimum_memory }}"}
+: ${JVM_MAXIMUM_MEMORY:="{{ bamboo_jvm_maximum_memory }}"}
 
 #
 # The following are the required arguments need for Bamboo standalone.

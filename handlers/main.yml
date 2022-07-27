@@ -14,12 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: bamboo | systemctl daemon-reload
-  ansible.builtin.systemd:
-    daemon_reload: true
-  changed_when: false
-  failed_when: false
-
 - name: bamboo | systemctl restart bamboo.service
   ansible.builtin.service:
     name: "bamboo.service"
