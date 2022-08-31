@@ -15,7 +15,7 @@
 # limitations under the License.
 
 # Bamboo release.
-bamboo_release: "8.2"
+bamboo_release: "9.0"
 
 # Bamboo version.
 bamboo_version: "{{ _bamboo_version[bamboo_release] }}"
