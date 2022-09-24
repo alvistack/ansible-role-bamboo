@@ -107,7 +107,7 @@
   notify:
     - bamboo | systemctl restart bamboo.service
 
-- name: patch {{ bamboo_catalina }}/atlassian-bamboo/WEB-INF/web.xml
+- name: patch /opt/atlassian/bamboo/atlassian-bamboo/WEB-INF/web.xml
   vars:
     ansible_python_interpreter: "python3"
   xml:
