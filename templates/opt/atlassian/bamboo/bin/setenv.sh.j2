@@ -56,7 +56,7 @@ if [ "$BAMBOO_HOME" != "" ]; then
    fi
 fi
 
-JAVA_OPTS="-Xms${JVM_MINIMUM_MEMORY} -Xmx${JVM_MAXIMUM_MEMORY} ${JAVA_OPTS} ${JVM_REQUIRED_ARGS} ${JVM_SUPPORT_RECOMMENDED_ARGS} ${JVM_EC_RECOMMENDED_ARGS} ${BAMBOO_HOME_MINUSD}"
+JAVA_OPTS="-Xms${JVM_MINIMUM_MEMORY} -Xmx${JVM_MAXIMUM_MEMORY} ${JAVA_OPTS} ${JVM_SUPPORT_RECOMMENDED_ARGS} ${JVM_EC_RECOMMENDED_ARGS} ${JVM_REQUIRED_ARGS} ${BAMBOO_HOME_MINUSD}"
 
 # Perm Gen size needs to be increased if encountering OutOfMemoryError: PermGen problems. Specifying PermGen size is not valid on IBM JDKs
 BAMBOO_MAX_PERM_SIZE=256m
@@ -72,14 +72,14 @@ if [ -f "${PRGDIR}/permgen.sh" ]; then
 fi
 
 JAVA_OPTS=$(echo "$JAVA_OPTS" | sed -e 's/\s*$//' -e 's/^\s*//')
-export $JAVA_OPTS
+export JAVA_OPTS
 
 CATALINA_OPTS="-Dbamboo.catalina.connector.scheme={{ bamboo_catalina_connector_scheme }} ${CATALINA_OPTS}"
 CATALINA_OPTS="-Dbamboo.catalina.connector.secure={{ bamboo_catalina_connector_secure }} ${CATALINA_OPTS}"
 CATALINA_OPTS="-Dbamboo.catalina.connector.proxyname={{ bamboo_catalina_connector_proxyname }} ${CATALINA_OPTS}"
 CATALINA_OPTS="-Dbamboo.catalina.connector.proxyport={{ bamboo_catalina_connector_proxyport }} ${CATALINA_OPTS}"
 CATALINA_OPTS="-Dbamboo.catalina.context.path={{ bamboo_catalina_context_path }} ${CATALINA_OPTS}"
-export $CATALINA_OPTS
+export CATALINA_OPTS
 
 # set the location of the pid file
 if [ -z "$CATALINA_PID" ] ; then
@@ -89,7 +89,7 @@ if [ -z "$CATALINA_PID" ] ; then
         CATALINA_PID="$CATALINA_HOME"/work/catalina.pid
     fi
 fi
-export $CATALINA_PID
+export CATALINA_PID
 
 echo ""
 echo "If you encounter issues starting or stopping Bamboo Server, please see the Troubleshooting guide at https://confluence.atlassian.com/display/BAMBOO/Installing+and+upgrading+Bamboo"
