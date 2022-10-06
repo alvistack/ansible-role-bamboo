@@ -61,10 +61,8 @@
                 useBodyEncodingForURI="true"
                 URIEncoding="UTF-8"
 
-                proxyName="{{ bamboo_catalina_connector_proxyname }}"
-                proxyPort="{{ bamboo_catalina_connector_proxyport }}"
-                scheme="{{ bamboo_catalina_connector_scheme }}"
-                secure="{{ bamboo_catalina_connector_secure }}"
+                scheme="${bamboo.catalina.connector.scheme}" secure="${bamboo.catalina.connector.secure}"
+                proxyName="${bamboo.catalina.connector.proxyname}" proxyPort="${bamboo.catalina.connector.proxyport}"
 
                 redirectPort="8443">
             <UpgradeProtocol className="org.apache.coyote.http2.Http2Protocol" />
@@ -160,7 +158,7 @@
         <Engine name="Catalina" defaultHost="localhost">
             <Host name="localhost" appBase="webapps" unpackWARs="true" autoDeploy="true">
 
-                <Context path="{{ bamboo_catalina_context_path }}" docBase="${catalina.home}/atlassian-bamboo" reloadable="false" useHttpOnly="true">
+                <Context path="${bamboo.catalina.context.path}" docBase="${catalina.home}/atlassian-bamboo" reloadable="false" useHttpOnly="true">
 
                     <!--<Resource name="UserTransaction" auth="Container" type="javax.transaction.UserTransaction"-->
                               <!--factory="org.objectweb.jotm.UserTransactionFactory" jotm.timeout="60"/>-->
@@ -169,8 +167,8 @@
 
             </Host>
 
-            <Valve className="org.apache.catalina.valves.AccessLogValve" resolveHosts="false"
-                   pattern="%a %t &quot;%m %U%q %H&quot; %s %b %D &quot;%{Referer}i&quot; &quot;%{User-Agent}i&quot;"/>
+            <Valve className="org.apache.catalina.valves.AccessLogValve" requestAttributesEnabled="true"
+                   pattern="{{ '&quot;%{X-Forwarded-For}i&quot; %a %t &quot;%m %U%q %H&quot; %s %b %D &quot;%{Referer}i&quot; &quot;%{User-Agent}i&quot;' }}"/>
 
             <!-- StuckThreadDetectionValve added below to print stack traces if a thread has been stuck for 60 seconds -->
             <Valve className="org.apache.catalina.valves.StuckThreadDetectionValve" threshold="60" />
