@@ -8,6 +8,11 @@ BAMBOO_HOME="{{ bamboo_home }}"
 BAMBOO_CATALINA="{{ bamboo_catalina }}"
 
 #
+# Recommended JVM setting for Embedded Crowd
+#
+: ${JVM_EC_RECOMMENDED_ARGS:=""}
+
+#
 #  Occasionally Atlassian Support may recommend that you set some specific JVM arguments.  You can use this variable below to do that.
 #
 : ${JVM_SUPPORT_RECOMMENDED_ARGS:="{{ bamboo_jvm_support_recommended_args }}"}
@@ -27,7 +32,7 @@ BAMBOO_CATALINA="{{ bamboo_catalina }}"
 #
 # The following are the required arguments need for Bamboo standalone.
 #
-: ${JVM_REQUIRED_ARGS:="-XX:+UseG1GC"}
+: ${JVM_REQUIRED_ARGS:="-XX:+UseZGC -XX:+ExplicitGCInvokesConcurrent"}
 
 #-----------------------------------------------------------------------------------
 #
@@ -51,7 +56,7 @@ if [ "$BAMBOO_HOME" != "" ]; then
    fi
 fi
 
-JAVA_OPTS="-Xms${JVM_MINIMUM_MEMORY} -Xmx${JVM_MAXIMUM_MEMORY} ${JAVA_OPTS} ${JVM_REQUIRED_ARGS} ${JVM_SUPPORT_RECOMMENDED_ARGS} ${BAMBOO_HOME_MINUSD}"
+JAVA_OPTS="-Xms${JVM_MINIMUM_MEMORY} -Xmx${JVM_MAXIMUM_MEMORY} ${JAVA_OPTS} ${JVM_SUPPORT_RECOMMENDED_ARGS} ${JVM_EC_RECOMMENDED_ARGS} ${JVM_REQUIRED_ARGS} ${BAMBOO_HOME_MINUSD}"
 
 # Perm Gen size needs to be increased if encountering OutOfMemoryError: PermGen problems. Specifying PermGen size is not valid on IBM JDKs
 BAMBOO_MAX_PERM_SIZE=256m
@@ -68,6 +73,13 @@ fi
 
 JAVA_OPTS=$(echo "$JAVA_OPTS" | sed -e 's/\s*$//' -e 's/^\s*//')
 export JAVA_OPTS
+
+CATALINA_OPTS="-Dbamboo.catalina.connector.scheme={{ bamboo_catalina_connector_scheme }} ${CATALINA_OPTS}"
+CATALINA_OPTS="-Dbamboo.catalina.connector.secure={{ bamboo_catalina_connector_secure }} ${CATALINA_OPTS}"
+CATALINA_OPTS="-Dbamboo.catalina.connector.proxyname={{ bamboo_catalina_connector_proxyname }} ${CATALINA_OPTS}"
+CATALINA_OPTS="-Dbamboo.catalina.connector.proxyport={{ bamboo_catalina_connector_proxyport }} ${CATALINA_OPTS}"
+CATALINA_OPTS="-Dbamboo.catalina.context.path={{ bamboo_catalina_context_path }} ${CATALINA_OPTS}"
+export CATALINA_OPTS
 
 # set the location of the pid file
 if [ -z "$CATALINA_PID" ] ; then
