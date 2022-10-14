@@ -56,6 +56,7 @@ if [ "$BAMBOO_HOME" != "" ]; then
    fi
 fi
 
+JAVA_OPTS="-XX:ReservedCodeCacheSize={{ bamboo_jvm_reserved_code_cache_size }} ${JAVA_OPTS}"
 JAVA_OPTS="-Xms${JVM_MINIMUM_MEMORY} -Xmx${JVM_MAXIMUM_MEMORY} ${JAVA_OPTS} ${JVM_SUPPORT_RECOMMENDED_ARGS} ${JVM_EC_RECOMMENDED_ARGS} ${JVM_REQUIRED_ARGS} ${BAMBOO_HOME_MINUSD}"
 
 # Perm Gen size needs to be increased if encountering OutOfMemoryError: PermGen problems. Specifying PermGen size is not valid on IBM JDKs
@@ -74,6 +75,7 @@ fi
 JAVA_OPTS=$(echo "$JAVA_OPTS" | sed -e 's/\s*$//' -e 's/^\s*//')
 export JAVA_OPTS
 
+CATALINA_OPTS="-Dbamboo.catalina.connector.port={{ bamboo_catalina_connector_port }} ${CATALINA_OPTS}"
 CATALINA_OPTS="-Dbamboo.catalina.connector.scheme={{ bamboo_catalina_connector_scheme }} ${CATALINA_OPTS}"
 CATALINA_OPTS="-Dbamboo.catalina.connector.secure={{ bamboo_catalina_connector_secure }} ${CATALINA_OPTS}"
 CATALINA_OPTS="-Dbamboo.catalina.connector.proxyname={{ bamboo_catalina_connector_proxyname }} ${CATALINA_OPTS}"
