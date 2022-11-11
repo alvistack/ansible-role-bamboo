@@ -69,6 +69,29 @@
     create_home: false
     state: "present"
 
+- name: prepare directories
+  ansible.builtin.file:
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner | default('root') }}"
+    group: "{{ item.group | default('root') }}"
+    mode: "{{ item.mode | default('0755') }}"
+    state: "{{ item.state | default('directory') }}"
+  loop:
+    - dest: "{{ bamboo_catalina }}"
+      owner: "{{ bamboo_owner }}"
+      group: "{{ bamboo_group }}"
+      mode: "0700"
+    - dest: "{{ bamboo_catalina }}/bin"
+      owner: "{{ bamboo_owner }}"
+      group: "{{ bamboo_group }}"
+    - dest: "{{ bamboo_catalina }}/conf"
+      owner: "{{ bamboo_owner }}"
+      group: "{{ bamboo_group }}"
+    - dest: "{{ bamboo_home }}"
+      owner: "{{ bamboo_owner }}"
+      group: "{{ bamboo_group }}"
+      mode: "0750"
+
 - name: copy templates
   ansible.builtin.template:
     dest: "{{ item.dest }}"
