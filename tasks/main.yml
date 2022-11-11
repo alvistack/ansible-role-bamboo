@@ -80,6 +80,7 @@
     - dest: "{{ bamboo_catalina }}"
       owner: "{{ bamboo_owner }}"
       group: "{{ bamboo_group }}"
+      mode: "0700"
     - dest: "{{ bamboo_catalina }}/bin"
       owner: "{{ bamboo_owner }}"
       group: "{{ bamboo_group }}"
@@ -89,6 +90,7 @@
     - dest: "{{ bamboo_home }}"
       owner: "{{ bamboo_owner }}"
       group: "{{ bamboo_group }}"
+      mode: "0750"
 
 - name: copy templates
   ansible.builtin.template:
