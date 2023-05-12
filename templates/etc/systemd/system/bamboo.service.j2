@@ -1,0 +1,17 @@
+# {{ ansible_managed }}
+
+[Unit]
+Description=Atlassian Bamboo
+After=multi-user.target
+Wants=multi-user.target
+
+[Service]
+Type=forking
+User={{ bamboo_owner }}
+Group={{ bamboo_group }}
+ExecStart={{ bamboo_catalina }}/bin/start-bamboo.sh
+ExecStop={{ bamboo_catalina }}/bin/stop-bamboo.sh
+PIDFile={{ bamboo_catalina }}/work/catalina.pid
+
+[Install]
+WantedBy=multi-user.target

@@ -77,6 +77,7 @@
     mode: "{{ item.mode | default('0755') }}"
     state: "{{ item.state | default('directory') }}"
   loop:
+    - dest: "/etc/systemd/system"
     - dest: "{{ bamboo_catalina }}"
       owner: "{{ bamboo_owner }}"
       group: "{{ bamboo_group }}"
@@ -100,6 +101,7 @@
     group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0644') }}"
   loop:
+    - dest: "/etc/systemd/system/bamboo.service"
     - dest: "{{ bamboo_catalina }}/bin/setenv.sh"
       src: "./templates/opt/atlassian/bamboo/bin/setenv.sh.j2"
       owner: "{{ bamboo_owner }}"
@@ -110,6 +112,7 @@
       owner: "{{ bamboo_owner }}"
       group: "{{ bamboo_group }}"
   notify:
+    - bamboo | systemctl daemon-reload
     - bamboo | systemctl restart bamboo.service
 
 - name: prepare files
@@ -120,6 +123,7 @@
     mode: "{{ item.mode | default('0644') }}"
     state: "{{ item.state | default('file') }}"
   loop:
+    - dest: "/etc/systemd/system/bamboo.service"
     - dest: "{{ bamboo_catalina }}/bin/setenv.sh"
       owner: "{{ bamboo_owner }}"
       group: "{{ bamboo_group }}"
@@ -128,6 +132,7 @@
       owner: "{{ bamboo_owner }}"
       group: "{{ bamboo_group }}"
   notify:
+    - bamboo | systemctl daemon-reload
     - bamboo | systemctl restart bamboo.service
 
 - name: patch /opt/atlassian/bamboo/atlassian-bamboo/WEB-INF/web.xml
