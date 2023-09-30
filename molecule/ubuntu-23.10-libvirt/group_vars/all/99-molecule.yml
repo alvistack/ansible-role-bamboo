@@ -14,7 +14,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-_bamboo_version:
-  "9.3": "9.3.3"
-  "9.2": "9.2.5"
-  "8.2": "8.2.9"
+openjdk_release: "11"
