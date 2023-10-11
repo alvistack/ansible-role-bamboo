@@ -61,6 +61,7 @@
                 useBodyEncodingForURI="true"
                 URIEncoding="UTF-8"
 
+                relaxedPathChars="[]|" relaxedQueryChars="[]|{}^&#x5c;&#x60;&quot;&lt;&gt;"
                 scheme="${bamboo.catalina.connector.scheme}" secure="${bamboo.catalina.connector.secure}"
                 proxyName="${bamboo.catalina.connector.proxyname}" proxyPort="${bamboo.catalina.connector.proxyport}"
 
@@ -118,7 +119,7 @@
              For more info, see :
               https://confluence.atlassian.com/display/BAMBOO/Securing+Bamboo+with+Tomcat+using+SSL
               and
-              http://tomcat.apache.org/tomcat-8.5-doc/ssl-howto.html
+              https://tomcat.apache.org/tomcat-9.0-doc/ssl-howto.html
         ====================================================================================
         -->
         <!--
@@ -162,6 +163,10 @@
 
                     <!--<Resource name="UserTransaction" auth="Container" type="javax.transaction.UserTransaction"-->
                               <!--factory="org.objectweb.jotm.UserTransactionFactory" jotm.timeout="60"/>-->
+
+                    <!-- Warning: enabling session persistence across server restarts
+                     hinders session invalidation of reloaded sessions on Bamboo admin request -->
+
                     <Manager pathname=""/>
                 </Context>
 
