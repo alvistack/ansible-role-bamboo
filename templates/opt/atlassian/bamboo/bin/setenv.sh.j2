@@ -32,7 +32,7 @@ BAMBOO_CATALINA="{{ bamboo_catalina }}"
 #
 # The following are the required arguments need for Bamboo standalone.
 #
-: ${JVM_REQUIRED_ARGS:="-XX:+UseZGC -XX:+ExplicitGCInvokesConcurrent"}
+: ${JVM_REQUIRED_ARGS:="-XX:+UseZGC -XX:ZCollectionInterval=5 -XX:ZAllocationSpikeTolerance=5 -XX:+ExplicitGCInvokesConcurrent"}
 
 #-----------------------------------------------------------------------------------
 #
@@ -57,7 +57,7 @@ if [ "$BAMBOO_HOME" != "" ]; then
 fi
 
 JAVA_OPTS="-XX:ReservedCodeCacheSize={{ bamboo_jvm_reserved_code_cache_size }} ${JAVA_OPTS}"
-JAVA_OPTS="-Xms${JVM_MINIMUM_MEMORY} -Xmx${JVM_MAXIMUM_MEMORY} ${JAVA_OPTS} ${JVM_SUPPORT_RECOMMENDED_ARGS} ${JVM_EC_RECOMMENDED_ARGS} ${JVM_REQUIRED_ARGS} ${BAMBOO_HOME_MINUSD}"
+JAVA_OPTS="-Xms${JVM_MINIMUM_MEMORY} -Xmx${JVM_MAXIMUM_MEMORY} ${JAVA_OPTS} ${JVM_SUPPORT_RECOMMENDED_ARGS} ${JVM_EC_RECOMMENDED_ARGS} ${JVM_REQUIRED_ARGS} --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens java.base/java.security=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED ${BAMBOO_HOME_MINUSD}"
 
 # Perm Gen size needs to be increased if encountering OutOfMemoryError: PermGen problems. Specifying PermGen size is not valid on IBM JDKs
 BAMBOO_MAX_PERM_SIZE=256m
