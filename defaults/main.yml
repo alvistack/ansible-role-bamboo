@@ -50,4 +50,7 @@ bamboo_jvm_support_recommended_args: >-
   -XX:+UnlockExperimentalVMOptions
 
 # Session timeout (in minutes).
+bamboo_session_timeout: "120"
+
+# Remember Me timeout (in minutes).
 bamboo_autologin_cookie_age: "120"
