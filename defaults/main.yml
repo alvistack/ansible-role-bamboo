@@ -21,28 +21,27 @@ bamboo_release: "9.5"
 bamboo_version: "{{ _bamboo_version[bamboo_release] }}"
 
 # Owner and group for Bamboo.
-bamboo_owner: "bamboo"
-bamboo_group: "bamboo"
+bamboo_owner: bamboo
+bamboo_group: bamboo
 
 # Bamboo home directory.
-bamboo_home: "/var/atlassian/application-data/bamboo"
+bamboo_home: /var/atlassian/application-data/bamboo
 
 # Bamboo installation directory.
-bamboo_catalina: "/opt/atlassian/bamboo"
+bamboo_catalina: /opt/atlassian/bamboo
 
 # JVM minimal and maximum memory usage.
-bamboo_jvm_minimum_memory: "2048m"
-bamboo_jvm_maximum_memory: "2048m"
-bamboo_jvm_reserved_code_cache_size: "512m"
+bamboo_jvm_minimum_memory: 2048m
+bamboo_jvm_maximum_memory: 2048m
+bamboo_jvm_reserved_code_cache_size: 512m
 
 # Proxy and context path setup.
 bamboo_catalina_connector_port: "8085"
-bamboo_catalina_connector_scheme: ~
-bamboo_catalina_connector_secure: ~
-bamboo_catalina_connector_proxyname: ~
-bamboo_catalina_connector_proxyport: ~
-bamboo_catalina_context_path: ~
-
+bamboo_catalina_connector_scheme:
+bamboo_catalina_connector_secure:
+bamboo_catalina_connector_proxyname:
+bamboo_catalina_connector_proxyport:
+bamboo_catalina_context_path:
 # Atlassian Support recommended JVM arguments.
 bamboo_jvm_support_recommended_args: >-
   -Datlassian.plugins.enable.wait=300
