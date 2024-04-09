@@ -34,6 +34,12 @@ BAMBOO_CATALINA="{{ bamboo_catalina }}"
 #
 : ${JVM_REQUIRED_ARGS:="-XX:+UseZGC -XX:ZCollectionInterval=5 -XX:ZAllocationSpikeTolerance=5 -XX:+ExplicitGCInvokesConcurrent"}
 
+#
+# Additional JPMS bypass. Used to bypass the encapsulation of specific packages for unnamed modules.
+# Tomcat bypasses java.base's java.lang, java.io, java.util, java.util.concurrent, and java.rmi/sun.rmi.transport by default via JDK_JAVA_OPTIONS and JAVA_OPTS in Tomcat 10 and later
+#
+: ${JPMS_BYPASS:="--add-opens java.base/java.security=ALL-UNNAMED"}
+
 #-----------------------------------------------------------------------------------
 #
 # In general don't make changes below here
@@ -56,8 +62,11 @@ if [ "$BAMBOO_HOME" != "" ]; then
    fi
 fi
 
-JAVA_OPTS="-XX:ReservedCodeCacheSize={{ bamboo_jvm_reserved_code_cache_size }} ${JAVA_OPTS}"
-JAVA_OPTS="-Xms${JVM_MINIMUM_MEMORY} -Xmx${JVM_MAXIMUM_MEMORY} ${JAVA_OPTS} ${JVM_SUPPORT_RECOMMENDED_ARGS} ${JVM_EC_RECOMMENDED_ARGS} ${JVM_REQUIRED_ARGS} --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens java.base/java.security=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED ${BAMBOO_HOME_MINUSD}"
+#
+# JAVA_OPTS has been deprecated for startup purposes. Use CATALINA_OPTS
+#
+CATALINA_OPTS="-XX:ReservedCodeCacheSize={{ bamboo_jvm_reserved_code_cache_size }} ${CATALINA_OPTS}"
+CATALINA_OPTS="-Xms${JVM_MINIMUM_MEMORY} -Xmx${JVM_MAXIMUM_MEMORY} ${JAVA_OPTS} ${JVM_SUPPORT_RECOMMENDED_ARGS} ${JVM_REQUIRED_ARGS} ${JVM_EC_RECOMMENDED_ARGS} ${JPMS_BYPASS} ${BAMBOO_HOME_MINUSD} ${CATALINA_OPTS}"
 
 # Perm Gen size needs to be increased if encountering OutOfMemoryError: PermGen problems. Specifying PermGen size is not valid on IBM JDKs
 BAMBOO_MAX_PERM_SIZE=256m
@@ -72,8 +81,9 @@ if [ -f "${PRGDIR}/permgen.sh" ]; then
     fi
 fi
 
-JAVA_OPTS=$(echo "$JAVA_OPTS" | sed -e 's/\s*$//' -e 's/^\s*//')
-export JAVA_OPTS
+CATALINA_OPTS=$(echo "$CATALINA_OPTS" | sed -e 's/\s*$//' -e 's/^\s*//')
+export CATALINA_OPTS
+unset JAVA_OPTS
 
 CATALINA_OPTS="-Dbamboo.catalina.connector.port={{ bamboo_catalina_connector_port }} ${CATALINA_OPTS}"
 CATALINA_OPTS="-Dbamboo.catalina.connector.scheme={{ bamboo_catalina_connector_scheme }} ${CATALINA_OPTS}"
