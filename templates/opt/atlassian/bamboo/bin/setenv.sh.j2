@@ -32,7 +32,7 @@ BAMBOO_CATALINA="{{ bamboo_catalina }}"
 #
 # The following are the required arguments need for Bamboo standalone.
 #
-: ${JVM_REQUIRED_ARGS:="-XX:+UseZGC -XX:ZCollectionInterval=5 -XX:ZAllocationSpikeTolerance=5 -XX:+ExplicitGCInvokesConcurrent"}
+: ${JVM_REQUIRED_ARGS:="{{ bamboo_jvm_gc_args }}"}
 
 #
 # Additional JPMS bypass. Used to bypass the encapsulation of specific packages for unnamed modules.
