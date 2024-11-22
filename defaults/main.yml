@@ -41,7 +41,7 @@ bamboo_catalina_connector_scheme: "http"
 bamboo_catalina_connector_secure: "false"
 bamboo_catalina_connector_proxyname:
 bamboo_catalina_connector_proxyport:
-bamboo_catalina_context_path:
+bamboo_catalina_context_path: "/"
 
 # Atlassian Support recommended JVM arguments.
 bamboo_jvm_support_recommended_args: >-
