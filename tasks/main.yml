@@ -151,7 +151,7 @@
     - xpath: /ns:web-app/ns:session-config/ns:tracking-mode
       value: COOKIE
     - xpath: /ns:web-app/ns:session-config/ns:cookie-config/ns:max-age
-      value: "{{ (bamboo_session_timeout | int) * 60 }}"
+      value: "{{ (bamboo_autologin_cookie_age | int) * 60 }}"
   notify:
     - bamboo | systemctl restart bamboo.service
 
@@ -172,7 +172,7 @@
     - xpath: /ns:web-app/ns:session-config/ns:tracking-mode
       value: COOKIE
     - xpath: /ns:web-app/ns:session-config/ns:cookie-config/ns:max-age
-      value: "{{ (bamboo_session_timeout | int) * 60 }}"
+      value: "{{ (bamboo_autologin_cookie_age | int) * 60 }}"
   notify:
     - bamboo | systemctl restart bamboo.service
 
