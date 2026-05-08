@@ -18,7 +18,7 @@
 bamboo_release: "12.1"
 
 # Bamboo version.
-bamboo_version: "{{ _bamboo_version[bamboo_release] }}"
+bamboo_version: "{{ _bamboo_version }}"
 
 # Owner and group for Bamboo.
 bamboo_owner: bamboo
