@@ -16,6 +16,6 @@
 
 _bamboo_version: "{{ __bamboo_version[bamboo_release] }}"
 __bamboo_version:
-  "12.1": 12.1.7
-  "10.2": 10.2.19
-  "9.6": 9.6.26
+  "12.1": 12.1.8
+  "10.2": 10.2.20
+  "9.6": 9.6.27
